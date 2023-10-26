@@ -1,0 +1,7 @@
+.header_container{
+    background-color: #1DA1f2;
+    height: 400px;
+    padding:5%;
+    display: flex;
+    justify-content: space-between;
+}
