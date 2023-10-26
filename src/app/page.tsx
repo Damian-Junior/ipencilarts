@@ -1,10 +1,12 @@
-import styles from './page.module.css'
-import Header from './(component)/(header)/header'
+
+import Header from "./(component)/(header)/header";
+import Stats from "./(component)/(stat)/stat";
 
 export default function Home() {
   return (
-    <main >
-    <Header/>
+    <main>
+      <Header />
+      <Stats />
     </main>
-  )
+  );
 }
