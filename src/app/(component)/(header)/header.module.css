@@ -1,0 +1,15 @@
+.header_container{
+    background-color: #1DA1f2;
+    height: 400px;
+    padding: 2% 5%;
+   
+}
+.image_div{
+    display: flex;
+    justify-content: space-between;
+}
+.balance{
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: sans-serif;
+}
