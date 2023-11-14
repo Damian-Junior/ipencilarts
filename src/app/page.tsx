@@ -1,5 +1,6 @@
 
 import BonusRule from "./(component)/(bonusRule)/bonusRule";
+import CheckList from "./(component)/(checklist)";
 import Header from "./(component)/(header)/header";
 import Stats from "./(component)/(stat)/stat";
 import SignUp from "./(component)/signUp/signUp";
@@ -13,6 +14,7 @@ export default function Home() {
       <BonusRule/>
       <SignUp/>
       <Spin/>
+      <CheckList/>
     </main>
   );
 }
