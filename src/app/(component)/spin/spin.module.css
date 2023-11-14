@@ -1,0 +1,17 @@
+.spinWrapper{
+    display: flex;
+    background-color: purple;
+    justify-content: space-between;
+    margin:0px 60px;
+    padding:20px 30px;
+    border-radius: 10px;
+
+}
+.playButton{
+    background-color:#EA9B41;
+    padding: 10px;
+    border-radius: 20px;
+    width: 40%;
+    font-size: 1.5em;
+    cursor: pointer;
+}
