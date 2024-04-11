@@ -11,7 +11,7 @@ const { Footer: AntFooter } = Layout;
 
 const ResponsiveFooter = () => {
   return (
-    <AntFooter style={{ textAlign: "center" }}>
+    <AntFooter style={{ textAlign: "center" , position:'fixed', bottom:0, width:'100%'}}>
       <div className={styles.text}>
         <p className={styles.text_p}>Shopping and Returns</p>
         <p className={styles.text_p}>Terms and Conditions</p>

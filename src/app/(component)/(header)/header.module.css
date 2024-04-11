@@ -1,15 +1,22 @@
-.header_container{
-    background-color: #1DA1f2;
-    height: 400px;
-    padding: 2% 5%;
-   
+.header_menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
-.image_div{
-    display: flex;
-    justify-content: space-between;
+.image_div {
+  display: flex;
+  justify-content: space-between;
 }
-.balance{
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-family: sans-serif;
+.cart {
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  right: 2%;
+  top: 3%;
+}
+.balance {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-family: sans-serif;
 }
