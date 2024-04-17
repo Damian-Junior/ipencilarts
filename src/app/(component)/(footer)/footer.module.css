@@ -1,0 +1,27 @@
+.footer {
+    background-color: darkblue;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .text {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .text_p {
+    margin-bottom: 20px;
+   }
+  .socialIcons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .icon {
+    width: 30px;
+    margin-left: 10px;
+  }
+  
