@@ -1,17 +1,19 @@
 "use client";
-import { Layout, Menu, Drawer } from "antd";
+import { Layout, Menu } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { mediaSize, useMediaQuery } from "../_shared/responsiveness";
+import AppDrawer from "../_shared/drawer";
 import styles from "./header.module.css";
 import MobileHeader from "./(mobile_header)";
-
-import { useState } from "react";
+import Cart from "../(Cart)";
+import { useContext, useState } from "react";
+import { CartContext } from "../(Cart)/cartContext";
+import CartIcon from '../../../assets/svgs'
 const { Header } = Layout;
 
 const ResponsiveHeader = () => {
   const isMobile = useMediaQuery(mediaSize.mobile);
   const [visible, setVisible] = useState(false);
-
   const showDrawer = () => {
     setVisible(true);
   };
@@ -19,6 +21,7 @@ const ResponsiveHeader = () => {
   const onClose = () => {
     setVisible(false);
   };
+  const { cartItems } = useContext(CartContext);
   if (isMobile) return <MobileHeader />;
   return (
     <Header style={{ display: "flex", justifyContent: "center" }}>
@@ -36,17 +39,15 @@ const ResponsiveHeader = () => {
         <Menu.Item key="7">Shop</Menu.Item>
         <Menu.Item key="8">Book a meeting</Menu.Item>
       </Menu>
-      <div onClick={showDrawer}>
-        <ShoppingCartOutlined className={styles.cart}/>
+      <div onClick={showDrawer} style={{display:'flex'}}>
+        <ShoppingCartOutlined className={styles.cart} size={150}/>
+        <span style={{color:'#fff',}}>{cartItems.length > 0 ? cartItems.length : ""}</span>
       </div>
-      <Drawer
-        title="Your Cart"
-        placement="right"
+      <AppDrawer
         onClose={onClose}
-        visible={visible}
-      >
-        <p>Your cart is empty.</p>
-      </Drawer>
+        open={visible}
+        component={<Cart cartItems={cartItems} />}
+      />
     </Header>
   );
 };

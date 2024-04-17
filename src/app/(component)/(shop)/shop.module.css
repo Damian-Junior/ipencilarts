@@ -1,0 +1,30 @@
+/* Images.module.css */
+
+.imagesContainer {
+    margin: 20px 0;
+    padding: 40px;
+  }
+  
+  @media (max-width: 767px) {
+    .imagesContainer {
+      overflow: hidden;
+    }
+  }
+  
+  /* Define animation effect for mobile view */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Apply animation effect when the image becomes visible */
+  .visible {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
