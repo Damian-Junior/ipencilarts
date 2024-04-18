@@ -32,12 +32,15 @@ const ResponsiveHeader = () => {
         defaultSelectedKeys={["1"]}
         className={styles.header_menu}
       >
-        <Menu.Item key="1">Home</Menu.Item>
+        <Menu.Item key="1" onClick={() => push("/")}>Home</Menu.Item>
         <Menu.Item key="2" onClick={() => push("/about")}>
           About
         </Menu.Item>
-        <Menu.Item key="3">Buy My Originals</Menu.Item>
-        <Menu.Item key="4">Buy My Prints</Menu.Item>
+        <Menu.Item key="3" onClick={() => push("/shop")}>
+          Shop
+        </Menu.Item>
+        <Menu.Item key="4">Buy My Originals</Menu.Item>
+        <Menu.Item key="5">Buy My Prints</Menu.Item>
       </Menu>
       <div onClick={showDrawer} style={{ display: "flex" }}>
         <ShoppingCartOutlined className={styles.cart} size={150} />

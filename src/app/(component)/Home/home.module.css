@@ -8,8 +8,8 @@
     /* background-size: 100% auto; 
     background-position: center;
     background-repeat: no-repeat; */
-    background-color: #0056b3;
-    
+    background-color: rgb(6, 6, 32);
+    scroll-behavior: smooth;
   }
     
   .main {
@@ -17,16 +17,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 8%;
   }
   
   .hero {
-     color: #fff;
+     color: rgb(199, 144, 41);
     text-align: center;
     padding: 100px 0;
   }
   
   .heroContent {
-    max-width: 800px;
+    max-width: 100%;
     margin: auto;
   }
   
