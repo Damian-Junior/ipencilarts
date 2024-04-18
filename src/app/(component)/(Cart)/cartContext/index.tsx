@@ -12,7 +12,7 @@ interface CartContextPropType {
 // Create the context
 export const CartContext = createContext<CartContextPropType>({
   addToCart: (product: any) => console.log(product, "addToCart"),
-  removeFromCart: (product: any) => {},
+  removeFromCart: (productid: string) => {},
   clearCart: () => {},
   cartItems: [],
 });
@@ -36,8 +36,10 @@ export const CartProvider = ({ children }: any) => {
   // Remove product from cart
   const removeFromCart = (productId: string | number) => {
     setCartItems(
-      cartItems.filter((item: Record<string, any>) => item.id !== productId)
+      cartItems.filter((item: Record<string, any>) => item.src !== productId)
     );
+    message.success("Item removed successfully");
+
   };
 
   // Clear cart

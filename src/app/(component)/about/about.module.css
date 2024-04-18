@@ -1,0 +1,33 @@
+/* pages/about.module.css */
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap:20px;
+    font-size: 20px;
+    text-align: justify;
+    margin: 20px;
+  }
+  
+  .text-container {
+    flex: 1;
+    padding: 40px; /* Space between text and image */
+    word-break: break-all;
+    width: 70%;
+  }
+  
+  .image-container {
+    width: 300px; /* Adjust width as needed */
+    height: auto;
+    float: left; /* Float image to the right */
+  }
+  @media (max-width: 991px) {
+    .container {
+      flex-direction: column; /* Stack elements vertically on smaller screens */
+      padding: 30px;
+    }
+    
+    .image-container {
+      width: 100%; /* Take full width on smaller screens */
+      margin-bottom: 20px; /* Space between image and text on smaller screens */
+    }
+  }

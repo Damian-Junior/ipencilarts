@@ -1,0 +1,48 @@
+/* components/ImageTextLayout.module.css */
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid whitesmoke;
+  box-shadow: 3px 3px lightgray;
+  padding: 20px;
+  position: relative;
+}
+
+.image {
+  flex: 1;
+  max-width: 100%;
+  height: 20%;
+  width: 50%;
+}
+
+.text_container {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.remove_button {
+  position: absolute;
+  right: 1%;
+  top: 2%;
+  color: black;
+}
+.text {
+  margin: 0;
+  padding: 10px;
+  color: blue;
+}
+.checkout {
+    width: 70%;
+    margin-top: 20px;
+    text-align: center;
+}
+@media (max-width: 991px) {
+  .container {
+    flex-direction: column;
+  }
+  .image,
+  .text-container {
+    flex: 100%;
+  }
+}
