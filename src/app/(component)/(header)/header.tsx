@@ -8,12 +8,13 @@ import MobileHeader from "./(mobile_header)";
 import Cart from "../(Cart)";
 import { useContext, useState } from "react";
 import { CartContext } from "../(Cart)/cartContext";
-import CartIcon from '../../../assets/svgs'
+import {useRouter} from "next/navigation";
 const { Header } = Layout;
 
 const ResponsiveHeader = () => {
   const isMobile = useMediaQuery(mediaSize.mobile);
   const [visible, setVisible] = useState(false);
+  const { push } = useRouter();
   const showDrawer = () => {
     setVisible(true);
   };
@@ -21,7 +22,7 @@ const ResponsiveHeader = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, removeFromCart } = useContext(CartContext);
   if (isMobile) return <MobileHeader />;
   return (
     <Header style={{ display: "flex", justifyContent: "center" }}>
@@ -32,21 +33,25 @@ const ResponsiveHeader = () => {
         className={styles.header_menu}
       >
         <Menu.Item key="1">Home</Menu.Item>
-        <Menu.Item key="2">About</Menu.Item>
-        <Menu.Item key="3">Contact</Menu.Item>
-        <Menu.Item key="4">Commissions</Menu.Item>
-        <Menu.Item key="6">Gallery</Menu.Item>
-        <Menu.Item key="7">Shop</Menu.Item>
-        <Menu.Item key="8">Book a meeting</Menu.Item>
+        <Menu.Item key="2" onClick={() => push("/about")}>
+          About
+        </Menu.Item>
+        <Menu.Item key="3">Buy My Originals</Menu.Item>
+        <Menu.Item key="4">Buy My Prints</Menu.Item>
       </Menu>
-      <div onClick={showDrawer} style={{display:'flex'}}>
-        <ShoppingCartOutlined className={styles.cart} size={150}/>
-        <span style={{color:'#fff',}}>{cartItems.length > 0 ? cartItems.length : ""}</span>
+      <div onClick={showDrawer} style={{ display: "flex" }}>
+        <ShoppingCartOutlined className={styles.cart} size={150} />
+        <span style={{ color: "#fff" }}>
+          {cartItems.length > 0 ? cartItems.length : ""}
+        </span>
       </div>
       <AppDrawer
         onClose={onClose}
+        width={450}
         open={visible}
-        component={<Cart cartItems={cartItems} />}
+        component={
+          <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+        }
       />
     </Header>
   );

@@ -1,9 +1,10 @@
 "use client";
+import Link from "next/link";
 import { Layout } from "antd";
 import {
   InstagramOutlined,
   TwitterOutlined,
-  WhatsAppOutlined,
+  TikTokOutlined,
   FacebookOutlined,
 } from "@ant-design/icons";
 import styles from "./footer.module.css";
@@ -11,16 +12,24 @@ const { Footer: AntFooter } = Layout;
 
 const ResponsiveFooter = () => {
   return (
-    <AntFooter style={{ textAlign: "center" , position:'fixed', bottom:0, width:'100%'}}>
+    <AntFooter style={{ textAlign: "center", width: "100%" }}>
       <div className={styles.text}>
         <p className={styles.text_p}>Shopping and Returns</p>
         <p className={styles.text_p}>Terms and Conditions</p>
         <p className={styles.text_p}>Privacy Policy</p>
         <div className={styles.socialIcons}>
-          <InstagramOutlined className={styles.icon} />
-          <TwitterOutlined className={styles.icon} />
-          <WhatsAppOutlined className={styles.icon} />
-          <FacebookOutlined className={styles.icon} />
+          <Link href="https://tr.ee/tjhc35_eFc" passHref>
+            <InstagramOutlined className={styles.icon} />
+          </Link>
+          <Link href="https://tr.ee/vNami6QGtR" passHref>
+            <TwitterOutlined className={styles.icon} />
+          </Link>
+          <Link href="https://tr.ee/0rGMTk0Z4s" passHref>
+            <TikTokOutlined className={styles.icon} />
+          </Link>
+          <Link href="https://tr.ee/vNami6QGtR" passHref>
+            <FacebookOutlined className={styles.icon} />
+          </Link>
         </div>
       </div>
     </AntFooter>

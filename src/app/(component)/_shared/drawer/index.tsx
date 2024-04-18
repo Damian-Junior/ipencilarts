@@ -3,7 +3,7 @@ import {Drawer} from 'antd';
 type AppDrawerProps = {
   open: boolean;
   component: ReactElement;
-  size?: string;
+  width?: string | number;
   placement?: 'left' | 'right' | 'top' | 'bottom';
   onClose: () => void;
   style?: Record<string, any>;
@@ -17,7 +17,7 @@ const AppDrawer = (props: AppDrawerProps) => {
     onClose,
     component,
     placement = 'right',
-    size,
+    width,
     style,
     className,
     mask = true,
@@ -25,9 +25,7 @@ const AppDrawer = (props: AppDrawerProps) => {
   return (
     <Drawer title="Your Cart" onClose={onClose} open={open}
       placement={placement}
-      // size={size}
-      // overlayOpacity={0.1}
-      // duration={400}
+    width={width}
       style={style}
       className={className}
       mask={mask}
