@@ -1,9 +1,8 @@
-import Shop from "./(component)/(shop)";
-import HomePage from "./(component)/Home";
+import HomePage from "./(component)/home/page";
 export default function Home() {
   return (
     <main>
-      <Shop />
+      <HomePage />
     </main>
   );
 }

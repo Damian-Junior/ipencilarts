@@ -3,10 +3,11 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  border: 1px solid whitesmoke;
-  box-shadow: 3px 3px lightgray;
+  border: 1px solid darkorange;
+  box-shadow: 1px 1px darkorange;
   padding: 20px;
   position: relative;
+  background-color: #000;
 }
 
 .image {
@@ -30,12 +31,13 @@
 .text {
   margin: 0;
   padding: 10px;
-  color: blue;
+  color: darkorange;
 }
 .checkout {
-    width: 70%;
-    margin-top: 20px;
-    text-align: center;
+  width: 70%;
+  margin-top: 20px;
+  text-align: center;
+ 
 }
 @media (max-width: 991px) {
   .container {

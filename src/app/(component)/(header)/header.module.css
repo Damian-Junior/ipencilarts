@@ -4,13 +4,14 @@
   align-items: center;
   flex-grow: 1;
   font-size: 18px;
-}
+  scroll-behavior: smooth;
+  }
 .image_div {
   display: flex;
   justify-content: space-between;
 }
 .cart {
-  color: #fff;
+  color: darkorange;
   cursor: pointer;
   
   }
