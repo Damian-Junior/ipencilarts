@@ -49,7 +49,12 @@ const Cart = (props: CartProps) => {
       )}
       {cartItems.length && (
         <div className={styles.checkout}>
-          <Button type="primary">Checkout</Button>
+          <Button
+            type="primary"
+            style={{ color: "#fff", backgroundColor: "darkorange" }}
+          >
+            Checkout
+          </Button>
         </div>
       )}
     </div>

@@ -9,18 +9,15 @@ const Home = () => {
       <main className={styles.main}>
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <h1 style={{ fontSize: 60 }}>Welcome to Ipencil Art Collections</h1>
-            <p style={{ marginBottom: 10, fontSize: 20 }}>
-              Discover unique artworks
-            </p>
-            <Button
-              onClick={() => push("/shop")}
-              style={{ backgroundColor: "rgb(199, 144, 41)", color: "#fff" }}
-            >
-              Shop Now
-            </Button>
+            {/* <h1 style={{ fontSize: 60 }}>Discover Unique Artworks</h1> */}
           </div>
         </section>
+        {/* <Button
+          onClick={() => push("/shop")}
+          className={styles.ctaButton}
+        >
+          Shop Now
+        </Button> */}
       </main>
     </div>
   );

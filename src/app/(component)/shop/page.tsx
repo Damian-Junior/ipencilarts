@@ -10,10 +10,11 @@ const Shop = () => {
 
   return (
     <div className={styles.imagesContainer}>
-      <Row gutter={[16, 16]} >
+      <Row gutter={[16, 16]}>
         {imageData.map((item, index: number) => (
           <Col key={index} xs={24} sm={24} md={12} lg={8} xl={6}>
             <Card
+              className={styles.card}
               hoverable
               style={{ width: "95%", marginRight: 5 }}
               cover={
@@ -26,13 +27,21 @@ const Shop = () => {
               }
             >
               <Card.Meta
-                title={item.name}
-                description={`Price: ${item.price}`}
+                title={<span style={{ color: "darkorange" }}>{item.name}</span>}
+                description={
+                  <span
+                    style={{ color: "darkorange" }}
+                  >{`Price: ${item.price}`}</span>
+                }
               />
               <Button
                 type="primary"
                 onClick={() => addToCart(item)}
-                style={{ marginTop: 10 }}
+                style={{
+                  marginTop: 10,
+                  backgroundColor: "darkorange",
+                  color: "#fff",
+                }}
               >
                 Add to Cart
               </Button>
