@@ -1,14 +1,37 @@
 "use client";
 import { Card, Row, Col, Button, message } from "antd";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import styles from "./shop.module.css";
 import { imageData } from "../_shared/contants";
 import Image from "next/image";
 import { CartContext } from "../(Cart)/cartContext";
 import { InView } from "react-intersection-observer";
+import { motion, AnimatePresence, animate } from 'framer-motion';
+
+
 const Shop = () => {
   const { addToCart } = useContext(CartContext);
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsVisible(scrollY > 500); // Adjust threshold as needed
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToTopVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
   return (
     <div className={styles.imagesContainer}>
       <Row gutter={[16, 16]}>
@@ -62,6 +85,20 @@ const Shop = () => {
           </InView>
         ))}
       </Row>
+      <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          onClick={scrollToTop}
+          variants={scrollToTopVariants}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          className="scroll-to-top"
+        >
+          <span>Top</span>
+        </motion.button>
+      )}
+    </AnimatePresence>
     </div>
   );
 };
