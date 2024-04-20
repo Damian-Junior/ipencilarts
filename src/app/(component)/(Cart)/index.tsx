@@ -15,9 +15,9 @@ const Cart = (props: CartProps) => {
   return (
     <div>
       {cartItems.length > 0 ? (
-        cartItems.map((items) => {
+        cartItems.map((items, index) => {
           return (
-            <div className={styles.container}>
+            <div className={styles.container} key={index}>
               <Tooltip title="Remove this item from Cart">
                 <CloseCircleOutlined
                   className={styles.remove_button}

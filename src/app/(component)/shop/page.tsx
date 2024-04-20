@@ -36,10 +36,11 @@ const Shop = () => {
     <div className={styles.imagesContainer}>
       <Row gutter={[16, 16]}>
         {imageData.map((item, index: number) => (
-          <InView triggerOnce threshold={0.3}>
+          <InView triggerOnce threshold={0.3} key={index}>
             {({ inView, ref, entry }) => (
               <Col key={index} xs={24} sm={24} md={12} lg={8} xl={6} ref={ref}>
                 <Card
+                key={index}
                   className={
                     inView ? styles.visible_card : styles.invisible_card
                   }
