@@ -8,6 +8,7 @@
   padding: 20px;
   position: relative;
   background-color: #000;
+  border-radius: 10px;
 }
 
 .image {
@@ -26,7 +27,7 @@
   position: absolute;
   right: 1%;
   top: 2%;
-  color: black;
+  color: darkorange;
 }
 .text {
   margin: 0;
@@ -42,6 +43,7 @@
 @media (max-width: 991px) {
   .container {
     flex-direction: column;
+    padding: 5px;
   }
   .image,
   .text-container {
