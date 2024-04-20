@@ -1,14 +1,17 @@
 // Cart.js
+'use client';
 import React from "react";
-import { Button, Empty, Image, Divider, Tooltip } from "antd";
+import { Button, Empty, Image, Tooltip } from "antd";
 import styles from "./cart.module.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
+import { useMediaQuery, mediaSize } from "../_shared/responsiveness";
 interface CartProps {
   cartItems: Array<Record<string, any>>;
   removeFromCart: (productId: string) => void;
 }
 const Cart = (props: CartProps) => {
   const { cartItems, removeFromCart } = props;
+  const isMobile = useMediaQuery(mediaSize.mobile);
   return (
     <div>
       {cartItems.length > 0 ? (
@@ -30,7 +33,7 @@ const Cart = (props: CartProps) => {
                 height={150}
               />
               <div className={styles.text_container}>
-                <p className={styles.text} style={{ fontSize: "1.5em" }}>
+                <p className={styles.text} style={{ fontSize:isMobile?'1em': "1.5em" }}>
                   {items.name}
                 </p>
                 <p className={styles.text}>{`Size: ${items.size}`}</p>

@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react';
-import {Drawer} from 'antd';
+import React, { ReactElement } from "react";
+import { Drawer } from "antd";
 type AppDrawerProps = {
   open: boolean;
   component: ReactElement;
   width?: string | number;
-  placement?: 'left' | 'right' | 'top' | 'bottom';
+  placement?: "left" | "right" | "top" | "bottom";
   onClose: () => void;
   style?: Record<string, any>;
   className?: string;
@@ -16,16 +16,19 @@ const AppDrawer = (props: AppDrawerProps) => {
     open,
     onClose,
     component,
-    placement = 'right',
+    placement = "right",
     width,
     style,
     className,
     mask = true,
   } = props;
   return (
-    <Drawer title="Your Cart" onClose={onClose} open={open}
+    <Drawer
+      title={<span style={{ color: "darkorange" , letterSpacing:10}}>Your Cart</span>}
+      onClose={onClose}
+      open={open}
       placement={placement}
-    width={width}
+      width={width}
       style={style}
       className={className}
       mask={mask}

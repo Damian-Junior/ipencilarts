@@ -1,48 +1,109 @@
 "use client";
 import { Drawer, Menu, Button } from "antd";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "../header.module.css";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { CartContext } from "../../(Cart)/cartContext";
+import Cart from "../../(Cart)";
+import AppDrawer from "../../_shared/drawer";
+import { useRouter } from "next/navigation";
 
 import { MenuOutlined } from "@ant-design/icons";
 const MobileHeader = () => {
   const [visible, setVisible] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+
+  const { cartItems, removeFromCart } = useContext(CartContext);
+  const { push } = useRouter();
 
   const showDrawer = () => {
     setVisible(true);
   };
-
+  const handleShowCart = () => {
+    setShowCart(true);
+  };
+  const handleCloseCart = () => {
+    setShowCart(false);
+  };
   const onClose = () => {
     setVisible(false);
   };
   return (
-    <div>
-      <div>Ipencil</div>
+    <div className={styles.mobile_header_container}>
       <Button className="menu-btn" type="primary" onClick={showDrawer}>
-          <MenuOutlined />
-        </Button>
+        <MenuOutlined style={{ background: "darkorange" }} />
+      </Button>
+      <div style={{ color: "darkorange", fontWeight: "bolder", letterSpacing:'8px' }}>IPENCIL</div>
+      <div onClick={handleShowCart} style={{ display: "flex" }}>
+        <ShoppingCartOutlined className={styles.cart} size={150} />
+        <span style={{ color: "darkorange", marginLeft: 5 }}>
+          {cartItems.length > 0 ? cartItems.length : ""}
+        </span>
+      </div>
       <Drawer
         title="Menu"
-        placement="right"
+        width={200}
+        placement="left"
         closable={false}
         onClose={onClose}
         visible={visible}
+        height={200}
       >
-        
         <Menu
-          theme="dark"
           mode="vertical"
           defaultSelectedKeys={["1"]}
-        //   className={styles.header_menu}
+          style={{ backgroundColor: "transparent" }}
         >
-          <Menu.Item key="1">Home</Menu.Item>
-          <Menu.Item key="2">About</Menu.Item>
-          <Menu.Item key="3">Contact</Menu.Item>
-          <Menu.Item key="4">Commissions</Menu.Item>
-          <Menu.Item key="6">Gallery</Menu.Item>
-          <Menu.Item key="7">Shop</Menu.Item>
-          <Menu.Item key="8">Book a meeting</Menu.Item>
+          <Menu.Item
+            key="1"
+            onClick={() => push("/")}
+            style={{
+              color: "darkorange",
+              fontWeight: "bolder",
+            }}
+          >
+            Home
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            onClick={() => push("/about")}
+            style={{
+              color: "darkorange",
+              fontWeight: "bolder",
+            }}
+          >
+            About
+          </Menu.Item>
+          <Menu.Item
+            key="3"
+            onClick={() => push("/shop")}
+            style={{
+              color: "darkorange",
+              fontWeight: "bolder",
+            }}
+          >
+            Shop
+          </Menu.Item>
+          <Menu.Item
+            key="4"
+            style={{
+              color: "darkorange",
+              fontWeight: "bolder",
+            }}
+          >
+            By My Prints
+          </Menu.Item>
         </Menu>
       </Drawer>
+      <AppDrawer
+        onClose={handleCloseCart}
+        width={250}
+        style={{ backgroundColor: "#000", borderColor: "darkorange" }}
+        open={showCart}
+        component={
+          <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+        }
+      />
     </div>
   );
 };

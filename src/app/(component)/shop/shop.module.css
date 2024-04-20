@@ -1,16 +1,30 @@
 /* Images.module.css */
-
+@keyframes scaleIn {
+  0%{
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 .imagesContainer {
   width: 95%;
   margin: auto;
   padding: 50px;
   scroll-behavior: smooth;
 }
-.card {
+.visible_card {
   background-color: transparent;
   border-radius: 10px;
   box-shadow: 1px 1px darkgray;
+  animation: scaleIn 2s ease-in 0s;
 }
+.invisible_card {
+ display: none;
+}
+
 
 @media (max-width: 991px) {
   .imagesContainer {
