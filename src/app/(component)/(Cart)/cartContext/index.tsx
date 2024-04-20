@@ -21,6 +21,7 @@ export const CartContext = createContext<CartContextPropType>({
 export const CartProvider = ({ children }: any) => {
   // Initialize cartItems state with value from local storage or an empty array
   const [cartItems, setCartItems] = useState<any>(
+    //@ts-ignore
     JSON.parse(localStorage.getItem("cartItems")) || []
   );
   // Update local storage whenever cartItems change
