@@ -37,7 +37,7 @@ const ResponsiveHeader = () => {
         mode="horizontal"
         defaultSelectedKeys={["1"]}
         className={styles.header_menu}
-        style={{ backgroundColor: "transparent" }}
+        style={{ backgroundColor: "black" }}
       >
         <Menu.Item
           key="1"
@@ -88,7 +88,7 @@ const ResponsiveHeader = () => {
           Buy My Prints
         </Menu.Item>
       </Menu>
-      <div onClick={showDrawer} style={{ display: "flex" }}>
+      <div onClick={showDrawer} style={{ display: "flex", }}>
         <ShoppingCartOutlined className={styles.cart} size={150} />
         <span style={{ color: "darkorange", marginLeft:5 }}>
           {cartItems.length > 0 ? cartItems.length : ""}
