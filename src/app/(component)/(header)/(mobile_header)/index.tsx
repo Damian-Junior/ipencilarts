@@ -41,13 +41,16 @@ const MobileHeader = () => {
         </span>
       </div>
       <Drawer
-        title="Menu"
-        width={200}
+        title={<span style={{color:'darkorange'}}>Menu</span>}
+        width={450}
         placement="left"
-        closable={false}
+        closable={true}
         onClose={onClose}
         visible={visible}
-        height={200}
+        className={styles.drawer}
+        height={450}
+        style={{ backgroundColor: "#000", borderColor: "darkorange" }}
+
       >
         <Menu
           mode="vertical"
@@ -97,7 +100,7 @@ const MobileHeader = () => {
       </Drawer>
       <AppDrawer
         onClose={handleCloseCart}
-        width={250}
+        width={350}
         style={{ backgroundColor: "#000", borderColor: "darkorange" }}
         open={showCart}
         component={
