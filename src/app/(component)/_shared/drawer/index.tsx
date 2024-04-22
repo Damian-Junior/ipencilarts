@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import styles from './drawer.module.css'
 import { Drawer } from "antd";
 type AppDrawerProps = {
   open: boolean;
@@ -24,14 +25,16 @@ const AppDrawer = (props: AppDrawerProps) => {
   } = props;
   return (
     <Drawer
-      title={<span style={{ color: "darkorange" , letterSpacing:10}}>Your Cart</span>}
+      title={<span style={{ color: "darkorange" , letterSpacing:10,}}>Your Cart</span>}
       onClose={onClose}
       open={open}
       placement={placement}
       width={width}
       style={style}
-      className={className}
+      className={`${styles.drawer} ${className}`}
       mask={mask}
+      closable={true}
+  
     >
       {component}
     </Drawer>

@@ -38,3 +38,8 @@
   z-index: 10; /* Ensures the header stays on top of other elements */
   background-color: black;
 }
+.drawer svg {
+  fill: darkorange;
+  position:absolute;
+  right: 2%;
+}

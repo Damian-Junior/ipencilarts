@@ -9,6 +9,7 @@ import Cart from "../(Cart)";
 import { useContext, useState } from "react";
 import { CartContext } from "../(Cart)/cartContext";
 import { useRouter } from "next/navigation";
+import { relative } from "path";
 const { Header } = Layout;
 
 const ResponsiveHeader = () => {
@@ -88,7 +89,7 @@ const ResponsiveHeader = () => {
           Buy My Prints
         </Menu.Item>
       </Menu>
-      <div onClick={showDrawer} style={{ display: "flex", }}>
+      <div onClick={showDrawer} style={{ display: "flex", zIndex:1000, position: 'absolute', right:'7%', top:'-1%'}}>
         <ShoppingCartOutlined className={styles.cart} size={150} />
         <span style={{ color: "darkorange", marginLeft:5 }}>
           {cartItems.length > 0 ? cartItems.length : ""}
