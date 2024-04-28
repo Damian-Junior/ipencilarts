@@ -18,7 +18,6 @@
 }
 .cart {
   color: darkorange;
-  cursor: pointer;
 }
 .balance {
   margin-bottom: 20px;
@@ -40,6 +39,17 @@
 }
 .drawer svg {
   fill: darkorange;
-  position:absolute;
+  position: absolute;
   right: 2%;
+}
+.cartDiv {
+  display: flex;
+  z-index: 1000;
+  position: relative;
+  right: -50%;
+  top: 3%;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
 }
