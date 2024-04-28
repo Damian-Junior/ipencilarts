@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
 import styles from "./about.module.css";
+import { mediaSize, useMediaQuery } from "../_shared/responsiveness";
 const AboutPage = () => {
+  const isMobile = useMediaQuery(mediaSize.mobile);
   return (
     <div className={styles.container}>
       <div className={styles.image_container}>
@@ -12,7 +15,15 @@ const AboutPage = () => {
         />
       </div>
       <div className={styles.text_container}>
-        <h1 style={{ marginTop: 20, color: "darkorange" }}>About The Author</h1>
+        <h1
+          style={{
+            marginTop: 20,
+            color: "darkorange",
+            fontSize: isMobile ? 28 : 56,
+          }}
+        >
+          About The Author
+        </h1>
         <p style={{ lineHeight: 2 }}>
           My name is Isaiah Philip, also known as Ipencil, a 27 year old
           Nigerian self taught, mix media artist who specializes in charcoal and
@@ -29,7 +40,13 @@ const AboutPage = () => {
           unique artistic vision, resulting in international sales and over a
           100 commission.
         </p>
-        <h1 style={{ marginTop: 40, color: "darkorange" }}>
+        <h1
+          style={{
+            marginTop: 40,
+            color: "darkorange",
+            fontSize: isMobile ? 28 : 56,
+          }}
+        >
           Mission Statement
         </h1>
         <p style={{ lineHeight: 2 }}>

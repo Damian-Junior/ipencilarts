@@ -11,8 +11,8 @@ interface CartContextPropType {
 }
 // Create the context
 export const CartContext = createContext<CartContextPropType>({
-  addToCart: (product: any) => console.log(product, "addToCart"),
-  removeFromCart: (productid: string) => {},
+  addToCart: () => {},
+  removeFromCart: () => {},
   clearCart: () => {},
   cartItems: [],
 });
@@ -22,16 +22,27 @@ export const CartProvider = ({ children }: any) => {
   // Initialize cartItems state with value from local storage or an empty array
   const [cartItems, setCartItems] = useState<any>(
     //@ts-ignore
-    JSON.parse(localStorage.getItem("cartItems")) || []
+    JSON.parse(localStorage.getItem("carts")) || []
   );
   // Update local storage whenever cartItems change
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("carts", JSON.stringify(cartItems));
   }, [cartItems]);
   // Add product to cart
   const addToCart = (product: Record<string, any>) => {
-    setCartItems([...cartItems, product]);
-    message.success("Product added to cart successfully");
+    // Check if the product already exists in the cart
+    const exists = cartItems.some(
+      (item: Record<string, any>) => item.src === product.src
+    );
+
+    if (exists) {
+      // If the product exists, show a message
+      message.error("Product already added to cart");
+    } else {
+      // If the product does not exist, add it to the cart
+      setCartItems((prevItems: any) => [...prevItems, product]);
+      message.success("Product added to cart successfully");
+    }
   };
 
   // Remove product from cart
@@ -40,7 +51,6 @@ export const CartProvider = ({ children }: any) => {
       cartItems.filter((item: Record<string, any>) => item.src !== productId)
     );
     message.success("Item removed successfully");
-
   };
 
   // Clear cart

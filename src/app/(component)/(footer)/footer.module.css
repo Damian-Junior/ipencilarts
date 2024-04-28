@@ -10,6 +10,9 @@
     font-size: 14px;
     margin-bottom: 5px;
     color: darkorange;
+
+    margin-top: 5%;
+
   }
   .text_p {
     margin-bottom: 20px;
@@ -17,6 +20,7 @@
   .socialIcons {
     display: flex;
     justify-content: center;
+
   }
   
   .icon {
