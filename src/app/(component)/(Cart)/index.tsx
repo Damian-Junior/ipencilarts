@@ -1,7 +1,6 @@
-// Cart.js
 "use client";
 import React from "react";
-import { Button, Empty, Image, Tooltip } from "antd";
+import { Button, Image, Empty } from "antd";
 import styles from "./cart.module.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { useMediaQuery, mediaSize } from "../_shared/responsiveness";
@@ -18,12 +17,10 @@ const Cart = (props: CartProps) => {
         cartItems.map((items, index) => {
           return (
             <div className={styles.container} key={index}>
-              <Tooltip title="Remove this item from Cart">
-                <CloseCircleOutlined
-                  className={styles.remove_button}
-                  onClick={() => removeFromCart(items.src)}
-                />
-              </Tooltip>
+              <CloseCircleOutlined
+                className={styles.remove_button}
+                onClick={() => removeFromCart(items.src)}
+              />
 
               <Image
                 src={items.src}
@@ -49,17 +46,21 @@ const Cart = (props: CartProps) => {
         })
       ) : (
         <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description="Your Cart is empty"
+          description={
+            <span style={{ color: "darkorange", opacity: 0.8 }}>
+              Your Cart is Empty
+            </span>
+          }
         />
       )}
-      {cartItems.length && (
+      {cartItems.length > 0 && (
         <>
           <div style={{ color: "darkorange" }}>
             <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total:</span>
             <span>
               {cartItems.reduce((accumulator, currentItem) => {
-                return accumulator + currentItem.price;
+                const total = accumulator + currentItem.price;
+                return total;
               }, 0)}
             </span>
           </div>
