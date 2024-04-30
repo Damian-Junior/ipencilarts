@@ -1,5 +1,5 @@
 // Cart.js
-'use client';
+"use client";
 import React from "react";
 import { Button, Empty, Image, Tooltip } from "antd";
 import styles from "./cart.module.css";
@@ -33,7 +33,10 @@ const Cart = (props: CartProps) => {
                 height={150}
               />
               <div className={styles.text_container}>
-                <p className={styles.text} style={{ fontSize:isMobile?'1em': "1.5em" }}>
+                <p
+                  className={styles.text}
+                  style={{ fontSize: isMobile ? "1em" : "1.5em" }}
+                >
                   {items.name}
                 </p>
                 <p className={styles.text}>{`Size: ${items.size}`}</p>
@@ -51,14 +54,24 @@ const Cart = (props: CartProps) => {
         />
       )}
       {cartItems.length && (
-        <div className={styles.checkout}>
-          <Button
-            type="primary"
-            style={{ color: "#fff", backgroundColor: "darkorange" }}
-          >
-            Checkout
-          </Button>
-        </div>
+        <>
+          <div style={{ color: "darkorange" }}>
+            <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total:</span>
+            <span>
+              {cartItems.reduce((accumulator, currentItem) => {
+                return accumulator + currentItem.price;
+              }, 0)}
+            </span>
+          </div>
+          <div className={styles.checkout}>
+            <Button
+              type="primary"
+              style={{ color: "#fff", backgroundColor: "darkorange" }}
+            >
+              Checkout
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );
