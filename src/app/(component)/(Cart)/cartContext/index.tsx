@@ -1,8 +1,7 @@
 "use client";
-// CartContext.js
 import React, { createContext, useState, useEffect } from "react";
 import { message } from "antd";
-
+import store from 'store2';
 interface CartContextPropType {
   addToCart: (product: any) => void;
   cartItems: any;
@@ -21,12 +20,11 @@ export const CartContext = createContext<CartContextPropType>({
 export const CartProvider = ({ children }: any) => {
   // Initialize cartItems state with value from local storage or an empty array
   const [cartItems, setCartItems] = useState<any>(
-    //@ts-ignore
-    JSON.parse(localStorage.getItem("carts")) || []
+    store.get("carts") || [] 
   );
   // Update local storage whenever cartItems change
   useEffect(() => {
-    localStorage.setItem("carts", JSON.stringify(cartItems));
+    store.set("carts", cartItems);
   }, [cartItems]);
   // Add product to cart
   const addToCart = (product: Record<string, any>) => {
