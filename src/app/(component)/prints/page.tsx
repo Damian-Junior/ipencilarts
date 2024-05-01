@@ -1,7 +1,7 @@
 "use client";
 import { Card, Row, Col, Button, } from "antd";
 import { useContext, useState, useEffect } from "react";
-import styles from "./shop.module.css";
+import styles from "../shop/shop.module.css";
 import { imageData } from "../_shared/contants";
 import Image from "next/image";
 import { CartContext } from "../(Cart)/cartContext";
@@ -9,8 +9,8 @@ import { InView } from "react-intersection-observer";
 import { motion, AnimatePresence, } from 'framer-motion';
 
 
-const Shop = () => {
-  const { addToCart } = useContext(CartContext);
+const Prints = () => {
+  const { addToCartPrint } = useContext(CartContext);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const Shop = () => {
                   />
                   <Button
                     type="primary"
-                    onClick={() => addToCart(item)}
+                    onClick={() => addToCartPrint(item)}
                     style={{
                       marginTop: 10,
                       backgroundColor: "#fff",
@@ -103,4 +103,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Prints;
