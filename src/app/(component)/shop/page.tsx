@@ -36,7 +36,7 @@ const Shop = () => {
     <div className={styles.imagesContainer}>
       <Row gutter={[16, 16]}>
         {imageData.map((item, index: number) => (
-          <InView triggerOnce threshold={0.2} key={index}>
+          <InView triggerOnce threshold={1} key={index}>
             {({ inView, ref, }) => (
               <Col key={index} xs={24} sm={24} md={12} lg={8} xl={6} ref={ref}>
                 <Card
@@ -48,7 +48,6 @@ const Shop = () => {
                   style={{
                     width: "95%",
                     marginRight: 5,
-                    color: inView ? "red" : "pink",
                   }}
                   cover={
                     <Image
