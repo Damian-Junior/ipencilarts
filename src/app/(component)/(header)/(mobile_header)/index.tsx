@@ -33,7 +33,15 @@ const MobileHeader = () => {
       <Button className="menu-btn" type="primary" onClick={showDrawer}>
         <MenuOutlined style={{ background: "darkorange" }} />
       </Button>
-      <div style={{ color: "darkorange", fontWeight: "bolder", letterSpacing:'8px' }}>IPENCIL</div>
+      <div
+        style={{
+          color: "darkorange",
+          fontWeight: "bolder",
+          letterSpacing: "8px",
+        }}
+      >
+        IPENCIL
+      </div>
       <div onClick={handleShowCart} style={{ display: "flex" }}>
         <ShoppingCartOutlined className={styles.cart} size={150} />
         <span style={{ color: "darkorange", marginLeft: 5 }}>
@@ -41,7 +49,7 @@ const MobileHeader = () => {
         </span>
       </div>
       <Drawer
-        title={<span style={{color:'darkorange'}}>Menu</span>}
+        title={<span style={{ color: "darkorange" }}>Menu</span>}
         width={450}
         placement="left"
         closable={true}
@@ -50,7 +58,6 @@ const MobileHeader = () => {
         className={styles.drawer}
         height={450}
         style={{ backgroundColor: "#000", borderColor: "darkorange" }}
-
       >
         <Menu
           mode="vertical"
@@ -59,7 +66,10 @@ const MobileHeader = () => {
         >
           <Menu.Item
             key="1"
-            onClick={() => push("/")}
+            onClick={() => {
+              push("/");
+              onClose();
+            }}
             style={{
               color: "darkorange",
               fontWeight: "bolder",
@@ -69,7 +79,10 @@ const MobileHeader = () => {
           </Menu.Item>
           <Menu.Item
             key="2"
-            onClick={() => push("/about")}
+            onClick={() => {
+              push("/about");
+              onClose();
+            }}
             style={{
               color: "darkorange",
               fontWeight: "bolder",
@@ -79,7 +92,10 @@ const MobileHeader = () => {
           </Menu.Item>
           <Menu.Item
             key="3"
-            onClick={() => push("/shop")}
+            onClick={() => {
+              push("/shop");
+              onClose();
+            }}
             style={{
               color: "darkorange",
               fontWeight: "bolder",
