@@ -49,7 +49,7 @@ export const imageData = [
     year:2023,
   },
   {
-    name: "All Black",
+    name: "All Back",
     price: "$2000",
     src: "https://itarkett.sirv.com/Images/ipencil_arts/All%20Black.jpeg",
     size:'3ft x 4ft',

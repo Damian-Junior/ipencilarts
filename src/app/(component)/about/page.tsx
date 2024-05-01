@@ -18,7 +18,7 @@ const AboutPage = () => {
         <h1
           style={{
             marginTop: 20,
-            color: "darkorange",
+            color: "#fff",
             fontSize: isMobile ? 28 : 56,
           }}
         >
@@ -43,7 +43,7 @@ const AboutPage = () => {
         <h1
           style={{
             marginTop: 40,
-            color: "darkorange",
+            color: "#fff",
             fontSize: isMobile ? 28 : 56,
           }}
         >

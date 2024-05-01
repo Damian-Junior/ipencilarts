@@ -1,49 +1,50 @@
 "use client";
 import React, { createContext, useState, useEffect } from "react";
 import { message } from "antd";
-import store from 'store2';
+import store from "store2";
 interface CartContextPropType {
   addToCart: (product: any) => void;
-  cartItems: any;
+  addToCartPrint: (product: any) => void;
+  cartItems: Array<Record<string, any>>;
+  artPrints:Array<Record<string, any>>;
   removeFromCart: (product: any) => void;
+  removeFromCartPrint: (productId: string) => void;
   clearCart: () => void;
 }
-// Create the context
+
 export const CartContext = createContext<CartContextPropType>({
   addToCart: () => {},
   removeFromCart: () => {},
   clearCart: () => {},
+  addToCartPrint: () => {},
+  removeFromCartPrint: () => {},
   cartItems: [],
+  artPrints:[],
 });
 
-// Cart context provider component
 export const CartProvider = ({ children }: any) => {
-  // Initialize cartItems state with value from local storage or an empty array
-  const [cartItems, setCartItems] = useState<any>(
-    store.get("carts") || [] 
-  );
-  // Update local storage whenever cartItems change
+  const [cartItems, setCartItems] = useState<any>(store.get("carts") || []);
+  const [artPrints, setArtPrints] = useState<any>(store.get("artPrints") || []);
   useEffect(() => {
     store.set("carts", cartItems);
   }, [cartItems]);
-  // Add product to cart
+
+  useEffect(() => {
+    store.set("artPrints", artPrints);
+  }, [artPrints]);
+
   const addToCart = (product: Record<string, any>) => {
-    // Check if the product already exists in the cart
     const exists = cartItems.some(
       (item: Record<string, any>) => item.src === product.src
     );
 
     if (exists) {
-      // If the product exists, show a message
       message.error("Product already added to cart");
     } else {
-      // If the product does not exist, add it to the cart
       setCartItems((prevItems: any) => [...prevItems, product]);
       message.success("Product added to cart successfully");
     }
   };
-
-  // Remove product from cart
   const removeFromCart = (productId: string | number) => {
     setCartItems(
       cartItems.filter((item: Record<string, any>) => item.src !== productId)
@@ -51,14 +52,34 @@ export const CartProvider = ({ children }: any) => {
     message.success("Item removed successfully");
   };
 
-  // Clear cart
+  const addToCartPrint = (product: Record<string, any>) => {
+    setArtPrints((prevItems: any) => [...prevItems, product]);
+    message.success("Product added to cart successfully");
+  };
+
+  const removeFromCartPrint = (productId: string | number) => {
+    setArtPrints(
+      artPrints.filter((item: Record<string, any>) => item.src !== productId)
+    );
+    message.success("Item removed successfully");
+  };
+
   const clearCart = () => {
     setCartItems([]);
+    setArtPrints([]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        removeFromCartPrint,
+        addToCartPrint,
+        artPrints,
+      }}
     >
       {children}
     </CartContext.Provider>

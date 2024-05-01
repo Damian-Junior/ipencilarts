@@ -13,7 +13,7 @@ const MobileHeader = () => {
   const [visible, setVisible] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  const { cartItems, removeFromCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, artPrints } = useContext(CartContext);
   const { push } = useRouter();
 
   const showDrawer = () => {
@@ -31,11 +31,11 @@ const MobileHeader = () => {
   return (
     <div className={styles.mobile_header_container}>
       <Button className="menu-btn" type="primary" onClick={showDrawer}>
-        <MenuOutlined style={{ background: "darkorange" }} />
+        <MenuOutlined style={{ background: "#fff" }} />
       </Button>
       <div
         style={{
-          color: "darkorange",
+          color: "#fff",
           fontWeight: "bolder",
           letterSpacing: "8px",
         }}
@@ -44,12 +44,14 @@ const MobileHeader = () => {
       </div>
       <div onClick={handleShowCart} style={{ display: "flex" }}>
         <ShoppingCartOutlined className={styles.cart} size={150} />
-        <span style={{ color: "darkorange", marginLeft: 5 }}>
-          {cartItems.length > 0 ? cartItems.length : ""}
+        <span style={{ color: "#fff", marginLeft: 5 }}>
+          {cartItems.length > 0 || artPrints.length > 0
+            ? cartItems.length + artPrints.length
+            : ""}
         </span>
       </div>
       <Drawer
-        title={<span style={{ color: "darkorange" }}>Menu</span>}
+        title={<span style={{ color: "#fff" }}>Menu</span>}
         width={450}
         placement="left"
         closable={true}
@@ -57,7 +59,7 @@ const MobileHeader = () => {
         visible={visible}
         className={styles.drawer}
         height={450}
-        style={{ backgroundColor: "#000", borderColor: "darkorange" }}
+        style={{ backgroundColor: "#000", borderColor: "#fff" }}
       >
         <Menu
           mode="vertical"
@@ -71,7 +73,7 @@ const MobileHeader = () => {
               onClose();
             }}
             style={{
-              color: "darkorange",
+              color: "#fff",
               fontWeight: "bolder",
             }}
           >
@@ -84,7 +86,7 @@ const MobileHeader = () => {
               onClose();
             }}
             style={{
-              color: "darkorange",
+              color: "#fff",
               fontWeight: "bolder",
             }}
           >
@@ -97,7 +99,7 @@ const MobileHeader = () => {
               onClose();
             }}
             style={{
-              color: "darkorange",
+              color: "#fff",
               fontWeight: "bolder",
             }}
           >
@@ -106,21 +108,29 @@ const MobileHeader = () => {
           <Menu.Item
             key="4"
             style={{
-              color: "darkorange",
+              color: "#fff",
               fontWeight: "bolder",
             }}
+            onClick={() => {
+              push("/prints");
+              onClose();
+            }}
           >
-            By My Prints
+            Buy My Prints
           </Menu.Item>
         </Menu>
       </Drawer>
       <AppDrawer
         onClose={handleCloseCart}
         width={350}
-        style={{ backgroundColor: "#000", borderColor: "darkorange" }}
+        style={{ backgroundColor: "#000", borderColor: "#fff" }}
         open={showCart}
         component={
-          <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+          <Cart
+            cartItems={cartItems}
+            removeFromCart={removeFromCart}
+            artPrints={artPrints}
+          />
         }
       />
     </div>

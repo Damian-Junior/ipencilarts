@@ -17,7 +17,7 @@
   justify-content: space-between;
 }
 .cart {
-  color: darkorange;
+  color: #fff;
 }
 .balance {
   margin-bottom: 20px;
@@ -38,7 +38,7 @@
   background-color: black;
 }
 .drawer svg {
-  fill: darkorange;
+  fill:#fff;
   position: absolute;
   right: 2%;
 }

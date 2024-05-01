@@ -22,7 +22,7 @@ const ResponsiveHeader = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const { cartItems, removeFromCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, artPrints } = useContext(CartContext);
   if (isMobile) return <MobileHeader />;
   return (
     <Header
@@ -43,7 +43,7 @@ const ResponsiveHeader = () => {
           key="1"
           onClick={() => push("/")}
           style={{
-            color: "darkorange",
+            color: "#fff",
             fontWeight: "bolder",
           }}
         >
@@ -53,7 +53,7 @@ const ResponsiveHeader = () => {
           key="2"
           onClick={() => push("/about")}
           style={{
-            color: "darkorange",
+            color: "#fff",
             fontWeight: "bolder",
           }}
         >
@@ -63,44 +63,38 @@ const ResponsiveHeader = () => {
           key="3"
           onClick={() => push("/shop")}
           style={{
-            color: "darkorange",
+            color: "#fff",
             fontWeight: "bolder",
           }}
         >
           Shop
         </Menu.Item>
         <Menu.Item
-          key="4"
-          style={{
-            color: "darkorange",
-            fontWeight: "bolder",
-          }}
-        >
-          Buy My Originals
-        </Menu.Item>
-        <Menu.Item
           key="5"
           style={{
-            color: "darkorange",
+            color: "#fff",
             fontWeight: "bolder",
           }}
+          onClick={() => push("/prints")}
         >
           Buy My Prints
         </Menu.Item>
       </Menu>
       <div onClick={showDrawer} className={styles.cartDiv}>
         <ShoppingCartOutlined className={styles.cart} size={150} />
-        <span style={{ color: "darkorange", marginLeft: 5 }}>
-          {cartItems.length > 0 ? cartItems.length : ""}
+        <span style={{ color: "#fff", marginLeft: 5 }}>
+          {cartItems.length > 0 || artPrints.length > 0
+            ? cartItems.length + artPrints.length
+            : ""}
         </span>
       </div>
       <AppDrawer
         onClose={onClose}
         width={450}
-        style={{ backgroundColor: "#000", borderColor: "darkorange" }}
+        style={{ backgroundColor: "#000", borderColor: "#fff" }}
         open={visible}
         component={
-          <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+          <Cart cartItems={cartItems} removeFromCart={removeFromCart} artPrints={artPrints}/>
         }
       />
     </Header>
