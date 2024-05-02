@@ -1,17 +1,32 @@
 "use client";
 import React from "react";
-import { Button, Image, Empty } from "antd";
+import { Button, Image, Empty, Space, Tag } from "antd";
 import styles from "./cart.module.css";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import {
+  CloseCircleOutlined,
+} from "@ant-design/icons";
 import { useMediaQuery, mediaSize } from "../_shared/responsiveness";
+import { useState } from "react";
 interface CartProps {
   cartItems: Array<Record<string, any>>;
   removeFromCart: (productId: string) => void;
   artPrints: Array<Record<string, any>>;
 }
+const ButtonGroup = Button.Group;
 const Cart = (props: CartProps) => {
   const { cartItems, removeFromCart, artPrints } = props;
   const isMobile = useMediaQuery(mediaSize.mobile);
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
   return (
     <div>
       <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Original Art Cart</h3>
@@ -42,7 +57,8 @@ const Cart = (props: CartProps) => {
                 <p className={styles.text}>{`Year: ${items.year}`}</p>
                 <p className={styles.text}>{`Price: ${items.price}`}</p>
               </div>
-              {/* <Divider /> */}
+
+             
             </div>
           );
         })
@@ -61,13 +77,14 @@ const Cart = (props: CartProps) => {
           margin: "20px -25px 20px -18px",
           width: "110%",
           opacity: 0.5,
+
         }}
       />
       <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Art Prints Cart</h3>
       {artPrints.length > 0 ? (
         artPrints?.map((items, index) => {
           return (
-            <div className={styles.container} key={index}>
+            <div className={styles.container} key={index}  style={{ position: "relative" }}>
               <CloseCircleOutlined
                 className={styles.remove_button}
                 onClick={() => removeFromCart(items.src)}
@@ -91,6 +108,16 @@ const Cart = (props: CartProps) => {
                 <p className={styles.text}>{`Year: ${items.year}`}</p>
                 <p className={styles.text}>{`Price: ${items.price}`}</p>
               </div>
+              <Space
+                size="small"
+                style={{ position: "absolute", bottom: "1%", right: "2%" }}
+              >
+                <ButtonGroup>
+                  <Button onClick={decreaseQuantity}>&#x2212; </Button>
+                  <Button style={{ cursor: "not-allowed" }}>{quantity}</Button>
+                  <Button onClick={increaseQuantity}>&#x2B;</Button>
+                </ButtonGroup>
+              </Space>
             </div>
           );
         })
