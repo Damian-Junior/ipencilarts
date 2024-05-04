@@ -13,7 +13,13 @@ const MobileHeader = () => {
   const [visible, setVisible] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  const { cartItems, removeFromCart, artPrints, removeFromCartPrint } = useContext(CartContext);
+  const {
+    cartItems,
+    removeFromCart,
+    artPrints,
+    removeFromCartPrint,
+    setArtPrints,
+  } = useContext(CartContext);
   const { push } = useRouter();
 
   const showDrawer = () => {
@@ -131,6 +137,7 @@ const MobileHeader = () => {
             removeFromCart={removeFromCart}
             artPrints={artPrints}
             removeFromCartPrint={removeFromCartPrint}
+            setArtPrints={setArtPrints}
           />
         }
       />

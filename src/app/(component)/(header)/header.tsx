@@ -22,8 +22,13 @@ const ResponsiveHeader = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const { cartItems, removeFromCart, artPrints, removeFromCartPrint } =
-    useContext(CartContext);
+  const {
+    cartItems,
+    removeFromCart,
+    artPrints,
+    removeFromCartPrint,
+    setArtPrints,
+  } = useContext(CartContext);
   if (isMobile) return <MobileHeader />;
   return (
     <Header
@@ -100,6 +105,7 @@ const ResponsiveHeader = () => {
             removeFromCart={removeFromCart}
             artPrints={artPrints}
             removeFromCartPrint={removeFromCartPrint}
+            setArtPrints={setArtPrints}
           />
         }
       />

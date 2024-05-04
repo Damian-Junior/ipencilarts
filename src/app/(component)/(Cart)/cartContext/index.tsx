@@ -10,6 +10,8 @@ interface CartContextPropType {
   removeFromCart: (product: any) => void;
   removeFromCartPrint: (productId: string) => void;
   clearCart: () => void;
+  setArtPrints:any;
+
 }
 
 export const CartContext = createContext<CartContextPropType>({
@@ -20,6 +22,7 @@ export const CartContext = createContext<CartContextPropType>({
   removeFromCartPrint: () => {},
   cartItems: [],
   artPrints:[],
+  setArtPrints:()=>{},
 });
 
 export const CartProvider = ({ children }: any) => {
@@ -58,11 +61,10 @@ export const CartProvider = ({ children }: any) => {
   };
 
   const removeFromCartPrint = (productId: string) => {
-    // setArtPrints(
-    //   artPrints.filter((item: Record<string, any>) => item.src !== productId)
-    // );
-    // message.success("Item removed successfully");
-    console.log(productId)
+    setArtPrints(
+      artPrints.filter((item: Record<string, any>) => item.src !== productId)
+    );
+    message.success("Item removed successfully");
   };
 
   const clearCart = () => {
@@ -80,6 +82,7 @@ export const CartProvider = ({ children }: any) => {
         removeFromCartPrint,
         addToCartPrint,
         artPrints,
+        setArtPrints
       }}
     >
       {children}
