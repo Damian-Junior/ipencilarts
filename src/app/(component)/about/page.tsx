@@ -8,7 +8,7 @@ const AboutPage = () => {
     <div className={styles.container}>
       <div className={styles.image_container}>
         <Image
-          src="https://itarkett.sirv.com/Images/ipencil_arts/ipencil.jpeg"
+          src="https://itarkett.sirv.com/Images/ipencil_arts/ipencil.svg"
           alt="Author"
           width={300}
           height={400}

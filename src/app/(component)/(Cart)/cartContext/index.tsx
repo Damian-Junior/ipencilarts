@@ -57,7 +57,7 @@ export const CartProvider = ({ children }: any) => {
     message.success("Product added to cart successfully");
   };
 
-  const removeFromCartPrint = (productId: string | number) => {
+  const removeFromCartPrint = (productId: string) => {
     setArtPrints(
       artPrints.filter((item: Record<string, any>) => item.src !== productId)
     );
