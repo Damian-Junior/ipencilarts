@@ -15,7 +15,10 @@ const ButtonGroup = Button.Group;
 const Cart = (props: CartProps) => {
   const { cartItems, removeFromCart, artPrints, removeFromCartPrint } = props;
   const isMobile = useMediaQuery(mediaSize.mobile);
-  let totalPrice = 0;
+  const [quantity, setQuantity] = useState(1); // Individual quantity state
+  const increaseQuantity = () => setQuantity((prev) => prev + 1);
+  const decreaseQuantity = () =>
+    quantity > 1 ? setQuantity((prev) => prev - 1) : null;
   return (
     <div>
       <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Original Art</h3>
@@ -69,11 +72,7 @@ const Cart = (props: CartProps) => {
       <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Art Prints</h3>
       {artPrints.length > 0 ? (
         artPrints?.map((items, index) => {
-          const [quantity, setQuantity] = useState(1); // Individual quantity state
-          const increaseQuantity = () => setQuantity((prev) => prev + 1);
-          const decreaseQuantity = () =>
-            quantity > 1 ? setQuantity((prev) => prev - 1) : null;
-          totalPrice = items.price * quantity;
+     
           return (
             <div
               className={styles.container}
@@ -131,11 +130,10 @@ const Cart = (props: CartProps) => {
           <div style={{ color: "#fff" }}>
             <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total:</span>
             <span>
-              {totalPrice.toFixed(2)}
-              {/* {cartItems.reduce((accumulator, currentItem) => {
+              {cartItems.reduce((accumulator, currentItem) => {
                 const total = accumulator + currentItem.price;
                 return total;
-              }, 0)} */}
+              }, 0)}
             </span>
           </div>
           <div className={styles.checkout}>
