@@ -2,7 +2,7 @@
 import { Card, Row, Col, Button, } from "antd";
 import { useContext, useState, useEffect } from "react";
 import styles from "../shop/shop.module.css";
-import { imageData } from "../_shared/contants";
+import { prints} from "../_shared/contants";
 import Image from "next/image";
 import { CartContext } from "../(Cart)/cartContext";
 import { InView } from "react-intersection-observer";
@@ -35,7 +35,7 @@ const Prints = () => {
   return (
     <div className={styles.imagesContainer}>
       <Row gutter={[16, 16]}>
-        {imageData.map((item, index: number) => (
+        {prints.map((item, index: number) => (
           <InView triggerOnce threshold={1} key={index}>
             {({ inView, ref, }) => (
               <Col key={index} xs={24} sm={24} md={12} lg={8} xl={6} ref={ref}>

@@ -1,24 +1,37 @@
 "use client";
 import React from "react";
-import { Button, Image, Empty, Space, } from "antd";
+import { Button, Image, Empty, Space } from "antd";
 import styles from "./cart.module.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { useMediaQuery, mediaSize } from "../_shared/responsiveness";
-import { useState } from "react";
 interface CartProps {
   cartItems: Array<Record<string, any>>;
   removeFromCart: (productId: string) => void;
   artPrints: Array<Record<string, any>>;
-  removeFromCartPrint:(productId:string)=>void;
+  removeFromCartPrint: (productId: string) => void;
+  setArtPrints: any;
 }
 const ButtonGroup = Button.Group;
 const Cart = (props: CartProps) => {
-  const { cartItems, removeFromCart, artPrints, removeFromCartPrint } = props;
+  const {
+    cartItems,
+    removeFromCart,
+    artPrints,
+    removeFromCartPrint,
+    setArtPrints,
+  } = props;
   const isMobile = useMediaQuery(mediaSize.mobile);
-  const [quantity, setQuantity] = useState(1); // Individual quantity state
-  const increaseQuantity = () => setQuantity((prev) => prev + 1);
-  const decreaseQuantity = () =>
-    quantity > 1 ? setQuantity((prev) => prev - 1) : null;
+  const increaseQuantity = (index: number) => {
+    const updatedArtPrints = [...artPrints];
+    updatedArtPrints[index].quantity++;
+    setArtPrints(updatedArtPrints);
+    console.log(updatedArtPrints[index].quantity)
+  };
+  const decreaseQuantity = (index: number) => {
+    const updatedArtPrints = [...artPrints];
+    updatedArtPrints[index].quantity--;
+    setArtPrints(updatedArtPrints);
+  };
   return (
     <div>
       <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Original Art</h3>
@@ -72,7 +85,6 @@ const Cart = (props: CartProps) => {
       <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Art Prints</h3>
       {artPrints.length > 0 ? (
         artPrints?.map((items, index) => {
-     
           return (
             <div
               className={styles.container}
@@ -81,7 +93,7 @@ const Cart = (props: CartProps) => {
             >
               <CloseCircleOutlined
                 className={styles.remove_button}
-                 onClick={() => removeFromCartPrint(items.src)}
+                onClick={() => removeFromCartPrint(items.src)}
               />
 
               <Image
@@ -107,9 +119,15 @@ const Cart = (props: CartProps) => {
                 style={{ position: "absolute", bottom: "1%", right: "2%" }}
               >
                 <ButtonGroup>
-                  <Button onClick={() => decreaseQuantity()}>&#x2212; </Button>
-                  <Button style={{ cursor: "not-allowed" }}>{quantity}</Button>
-                  <Button onClick={() => increaseQuantity()}>&#x2B;</Button>
+                  <Button onClick={() => decreaseQuantity(index)}>
+                    &#x2212;
+                  </Button>
+                  <Button style={{ cursor: "not-allowed" }}>
+                    {items.quantity}
+                  </Button>
+                  <Button onClick={() => increaseQuantity(index)}>
+                    &#x2B;
+                  </Button>
                 </ButtonGroup>
               </Space>
             </div>
@@ -130,10 +148,8 @@ const Cart = (props: CartProps) => {
           <div style={{ color: "#fff" }}>
             <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total:</span>
             <span>
-              {cartItems.reduce((accumulator, currentItem) => {
-                const total = accumulator + currentItem.price;
-                return total;
-              }, 0)}
+              {artPrints.reduce((acc, item) => acc + (item.price * item.quantity), 0)}
+
             </span>
           </div>
           <div className={styles.checkout}>

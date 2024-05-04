@@ -10,6 +10,8 @@ interface CartContextPropType {
   removeFromCart: (product: any) => void;
   removeFromCartPrint: (productId: string) => void;
   clearCart: () => void;
+  setArtPrints:any;
+
 }
 
 export const CartContext = createContext<CartContextPropType>({
@@ -20,17 +22,18 @@ export const CartContext = createContext<CartContextPropType>({
   removeFromCartPrint: () => {},
   cartItems: [],
   artPrints:[],
+  setArtPrints:()=>{},
 });
 
 export const CartProvider = ({ children }: any) => {
   const [cartItems, setCartItems] = useState<any>(store.get("carts") || []);
-  const [artPrints, setArtPrints] = useState<any>(store.get("artPrints") || []);
+  const [artPrints, setArtPrints] = useState<any>(store.get("prints") || []);
   useEffect(() => {
     store.set("carts", cartItems);
   }, [cartItems]);
 
   useEffect(() => {
-    store.set("artPrints", artPrints);
+    store.set("prints", artPrints);
   }, [artPrints]);
 
   const addToCart = (product: Record<string, any>) => {
@@ -58,11 +61,10 @@ export const CartProvider = ({ children }: any) => {
   };
 
   const removeFromCartPrint = (productId: string) => {
-    // setArtPrints(
-    //   artPrints.filter((item: Record<string, any>) => item.src !== productId)
-    // );
-    // message.success("Item removed successfully");
-    console.log(productId)
+    setArtPrints(
+      artPrints.filter((item: Record<string, any>) => item.src !== productId)
+    );
+    message.success("Item removed successfully");
   };
 
   const clearCart = () => {
@@ -80,6 +82,7 @@ export const CartProvider = ({ children }: any) => {
         removeFromCartPrint,
         addToCartPrint,
         artPrints,
+        setArtPrints
       }}
     >
       {children}
