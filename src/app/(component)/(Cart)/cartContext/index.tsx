@@ -27,13 +27,13 @@ export const CartContext = createContext<CartContextPropType>({
 
 export const CartProvider = ({ children }: any) => {
   const [cartItems, setCartItems] = useState<any>(store.get("carts") || []);
-  const [artPrints, setArtPrints] = useState<any>(store.get("artPrints") || []);
+  const [artPrints, setArtPrints] = useState<any>(store.get("prints") || []);
   useEffect(() => {
     store.set("carts", cartItems);
   }, [cartItems]);
 
   useEffect(() => {
-    store.set("artPrints", artPrints);
+    store.set("prints", artPrints);
   }, [artPrints]);
 
   const addToCart = (product: Record<string, any>) => {
