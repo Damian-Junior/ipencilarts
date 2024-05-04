@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button, Image, Empty, Space, Tag } from "antd";
+import { Button, Image, Empty, Space, } from "antd";
 import styles from "./cart.module.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { useMediaQuery, mediaSize } from "../_shared/responsiveness";
@@ -81,7 +81,7 @@ const Cart = (props: CartProps) => {
             >
               <CloseCircleOutlined
                 className={styles.remove_button}
-                // onClick={() => removeFromCartPrint(items.src)}
+                 onClick={() => removeFromCartPrint(items.src)}
               />
 
               <Image
