@@ -95,7 +95,7 @@ const Prints = () => {
           exit="hidden"
           className="scroll-to-top"
         >
-          <span>Top</span>
+          <span>&#187;</span>
         </motion.button>
       )}
     </AnimatePresence>
