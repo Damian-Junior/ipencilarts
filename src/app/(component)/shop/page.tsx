@@ -65,7 +65,7 @@ const Shop = () => {
                     description={
                       <span
                         style={{ color: "#fff" }}
-                      >{`Price: ${item.price}`}</span>
+                      >{`Price: $${item.price}`}</span>
                     }
                   />
                   <Button

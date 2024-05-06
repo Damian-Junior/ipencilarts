@@ -25,11 +25,11 @@ const Cart = (props: CartProps) => {
     const updatedArtPrints = [...artPrints];
     updatedArtPrints[index].quantity++;
     setArtPrints(updatedArtPrints);
-    console.log(updatedArtPrints[index].quantity)
   };
   const decreaseQuantity = (index: number) => {
     const updatedArtPrints = [...artPrints];
-    updatedArtPrints[index].quantity--;
+    if (updatedArtPrints[index].quantity > 1)
+      updatedArtPrints[index].quantity--;
     setArtPrints(updatedArtPrints);
   };
   return (
@@ -60,7 +60,7 @@ const Cart = (props: CartProps) => {
                 </p>
                 <p className={styles.text}>{`Size: ${items.size}`}</p>
                 <p className={styles.text}>{`Year: ${items.year}`}</p>
-                <p className={styles.text}>{`Price: ${items.price}`}</p>
+                <p className={styles.text}>{`Price: $${items.price}`}</p>
               </div>
             </div>
           );
@@ -112,7 +112,7 @@ const Cart = (props: CartProps) => {
                 </p>
                 <p className={styles.text}>{`Size: ${items.size}`}</p>
                 <p className={styles.text}>{`Year: ${items.year}`}</p>
-                <p className={styles.text}>{`Price: ${items.price}`}</p>
+                <p className={styles.text}>{`Price: $${items.price}`}</p>
               </div>
               <Space
                 size="small"
@@ -143,13 +143,18 @@ const Cart = (props: CartProps) => {
         />
       )}
 
-      {cartItems.length > 0 && (
+      {(cartItems.length > 0  || artPrints.length > 0)&& (
         <>
           <div style={{ color: "#fff" }}>
-            <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total:</span>
+            <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total: $</span>
             <span>
-              {artPrints.reduce((acc, item) => acc + (item.price * item.quantity), 0)}
-
+              {artPrints.reduce(
+                (acc, item) => acc + (item.price * item.quantity),
+                0
+              ) + cartItems.reduce(
+                (acc, item) => acc + (item.price * item.quantity),
+                0
+              )}
             </span>
           </div>
           <div className={styles.checkout}>
