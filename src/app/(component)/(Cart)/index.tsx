@@ -143,18 +143,15 @@ const Cart = (props: CartProps) => {
         />
       )}
 
-      {(cartItems.length > 0  || artPrints.length > 0)&& (
+      {(cartItems.length > 0 || artPrints.length > 0) && (
         <>
           <div style={{ color: "#fff" }}>
             <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total: $</span>
             <span>
               {artPrints.reduce(
-                (acc, item) => acc + (item.price * item.quantity),
+                (acc, item) => acc + item.price * item.quantity,
                 0
-              ) + cartItems.reduce(
-                (acc, item) => acc + (item.price * item.quantity),
-                0
-              )}
+              ) + cartItems.reduce((acc, item) => acc + item.price, 0)}
             </span>
           </div>
           <div className={styles.checkout}>

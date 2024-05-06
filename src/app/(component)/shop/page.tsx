@@ -52,7 +52,7 @@ const Shop = () => {
                   cover={
                     <Image
                       width={320}
-                      height={320}
+                      height={300}
                       alt={item.name}
                       src={item.src}
                     />
@@ -94,8 +94,9 @@ const Shop = () => {
           animate="visible"
           exit="hidden"
           className="scroll-to-top"
+          style={{position:'fixed', bottom:'30%', right:'2%'}}
         >
-          <span>Top</span>
+          <span style={{color:'#fff'}}>&#x1F879;</span>
         </motion.button>
       )}
     </AnimatePresence>
