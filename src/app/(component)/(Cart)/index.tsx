@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button, Image, Empty, Space } from "antd";
+import { Button, Image, Space } from "antd";
 import styles from "./cart.module.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { useMediaQuery, mediaSize } from "../_shared/responsiveness";
@@ -32,10 +32,24 @@ const Cart = (props: CartProps) => {
       updatedArtPrints[index].quantity--;
     setArtPrints(updatedArtPrints);
   };
+  if (cartItems.length == 0 && artPrints.length == 0)
+    return (
+      <div
+        style={{
+          color: "#fff",
+          opacity: 0.3,
+          transform: "translate(30%, 300px)",
+        }}
+      >
+        Your Cart is Empty
+      </div>
+    );
   return (
     <div>
-      <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Original Art</h3>
-      {cartItems.length > 0 ? (
+      {cartItems.length > 0 && (
+        <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Original Art</h3>
+      )}
+      {cartItems.length > 0 &&
         cartItems.map((items, index) => {
           return (
             <div className={styles.container} key={index}>
@@ -64,26 +78,23 @@ const Cart = (props: CartProps) => {
               </div>
             </div>
           );
-        })
-      ) : (
-        <Empty
-          description={
-            <span style={{ color: "#fff", opacity: 0.8 }}>
-              Your Cart is Empty
-            </span>
-          }
+        })}
+      {cartItems.length > 0 && artPrints.length > 0 && (
+        <div
+          style={{
+            border: "solid 1px gray",
+            margin: `${
+              cartItems.length == 0 ? "300px" : "20px"
+            } -25px 20px -18px`,
+            width: "110%",
+            opacity: 0.5,
+          }}
         />
       )}
-      <div
-        style={{
-          border: "solid 1px gray",
-          margin: "20px -25px 20px -18px",
-          width: "110%",
-          opacity: 0.5,
-        }}
-      />
-      <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Art Prints</h3>
-      {artPrints.length > 0 ? (
+      {artPrints.length > 0 && (
+        <h3 style={{ marginBottom: 5, opacity: 0.5 }}>Art Prints</h3>
+      )}
+      {artPrints.length > 0 &&
         artPrints?.map((items, index) => {
           return (
             <div
@@ -132,16 +143,7 @@ const Cart = (props: CartProps) => {
               </Space>
             </div>
           );
-        })
-      ) : (
-        <Empty
-          description={
-            <span style={{ color: "#fff", opacity: 0.8 }}>
-              Your Cart is Empty
-            </span>
-          }
-        />
-      )}
+        })}
 
       {(cartItems.length > 0 || artPrints.length > 0) && (
         <>

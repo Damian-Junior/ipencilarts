@@ -24,7 +24,7 @@ const AboutPage = () => {
         >
           About The Author
         </h1>
-        <p style={{ lineHeight: 2 }}>
+        <p style={{ lineHeight: 2 ,whiteSpace: "pre-wrap" }}>
           My name is Isaiah Philip, also known as Ipencil, a 27 year old
           Nigerian self taught, mix media artist who specializes in charcoal and
           acrylic as his preferred mediums. With a unique artistic style that
@@ -49,7 +49,7 @@ const AboutPage = () => {
         >
           Mission Statement
         </h1>
-        <p style={{ lineHeight: 2 }}>
+        <p style={{ lineHeight: 2 ,whiteSpace: "pre-wrap" }}>
           As a realistic charcoal artist, my mission is to capture the essence
           of the world with the stroke of my charcoal. I am dedicated to
           portraying the raw and unfiltered beauty of life, meticulously
