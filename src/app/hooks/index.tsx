@@ -39,7 +39,7 @@ const usePayment = (props: UsePaymentProps) => {
       });
     } catch (error) {
       console.error("Payment error:", error);
-      alert("Payment failed!");
+      message.success(`Payment failed: ${error}`);
     }
   };
 
