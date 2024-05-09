@@ -6,6 +6,8 @@
     font-size: 20px;
     text-align: justify;
     margin: 20px;
+    white-space: 'pre-line';
+    white-space-collapse: collapse;
   }
   
   .text-container {
@@ -13,6 +15,8 @@
     padding: 40px; /* Space between text and image */
     word-break: break-all;
     width: 70%;
+    white-space-collapse: collapse;
+    white-space: 'pre-line';
   }
   
   .image-container {
