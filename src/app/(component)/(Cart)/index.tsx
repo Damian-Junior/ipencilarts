@@ -162,11 +162,11 @@ const Cart = (props: CartProps) => {
           </div>
           <div style={{ margin: "20px 0px", padding: "10px" }}>
             <Input
-              prefix={<MailOutlined style={{ color: "rgba(0, 0, 0, 0.25)" }} />}
+              prefix={<MailOutlined style={{ color: "rgba(0, 0, 0,)" }} />}
               placeholder="Enter your email"
               value={email}
-              pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}"
               onChange={handleEmailChange}
+              type="email"
             />
           </div>
           <div className={styles.checkout}>
