@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
-import { Button, Image, Space } from "antd";
+import { useState } from "react";
+import { Button, Image, Space, Input } from "antd";
 import styles from "./cart.module.css";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined, MailOutlined } from "@ant-design/icons";
 import { useMediaQuery, mediaSize } from "../_shared/responsiveness";
+import usePayment from "@/app/hooks";
 interface CartProps {
   cartItems: Array<Record<string, any>>;
   removeFromCart: (productId: string) => void;
@@ -20,7 +21,15 @@ const Cart = (props: CartProps) => {
     removeFromCartPrint,
     setArtPrints,
   } = props;
+  const [email, setEmail] = useState("");
   const isMobile = useMediaQuery(mediaSize.mobile);
+  const totalAmount =
+    artPrints.reduce((acc, item) => acc + item.price * item.quantity, 0) +
+    cartItems.reduce((acc, item) => acc + item.price, 0);
+  const { handlePayClick } = usePayment({ email, amount: totalAmount });
+  const handleEmailChange = (event: any) => {
+    setEmail(event.target.value);
+  };
   const increaseQuantity = (index: number) => {
     const updatedArtPrints = [...artPrints];
     updatedArtPrints[index].quantity++;
@@ -149,17 +158,22 @@ const Cart = (props: CartProps) => {
         <>
           <div style={{ color: "#fff" }}>
             <span style={{ fontSize: 18, fontWeight: "bolder" }}>Total: $</span>
-            <span>
-              {artPrints.reduce(
-                (acc, item) => acc + item.price * item.quantity,
-                0
-              ) + cartItems.reduce((acc, item) => acc + item.price, 0)}
-            </span>
+            <span>{totalAmount}</span>
+          </div>
+          <div style={{ margin: "20px 0px", padding: "10px" }}>
+            <Input
+              prefix={<MailOutlined style={{ color: "rgba(0, 0, 0, 0.25)" }} />}
+              placeholder="Enter your email"
+              value={email}
+              pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}"
+              onChange={handleEmailChange}
+            />
           </div>
           <div className={styles.checkout}>
             <Button
               type="primary"
               style={{ color: "#000", backgroundColor: "#fff" }}
+              onClick={handlePayClick}
             >
               Checkout
             </Button>
