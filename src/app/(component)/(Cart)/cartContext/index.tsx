@@ -2,6 +2,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { message } from "antd";
 import store from "store2";
+import { imageData } from "../../_shared/contants";
 interface CartContextPropType {
   addToCart: (product: any) => void;
   addToCartPrint: (product: any) => void;
@@ -11,6 +12,8 @@ interface CartContextPropType {
   removeFromCartPrint: (productId: string) => void;
   clearCart: () => void;
   setArtPrints:any;
+  shopArts:Array<Record<string, any>>;
+  setShopArts:any;
 
 }
 
@@ -23,11 +26,15 @@ export const CartContext = createContext<CartContextPropType>({
   cartItems: [],
   artPrints:[],
   setArtPrints:()=>{},
+  shopArts:[],
+  setShopArts:()=>{}
 });
 
 export const CartProvider = ({ children }: any) => {
   const [cartItems, setCartItems] = useState<any>(store.get("originalArts") || []);
   const [artPrints, setArtPrints] = useState<any>(store.get("printsArt") || []);
+  const [shopArts, setShopArts] = useState<any>(imageData);
+
   useEffect(() => {
     store.set("originalArts", cartItems);
   }, [cartItems]);
@@ -82,7 +89,9 @@ export const CartProvider = ({ children }: any) => {
         removeFromCartPrint,
         addToCartPrint,
         artPrints,
-        setArtPrints
+        setArtPrints,
+        shopArts,
+        setShopArts
       }}
     >
       {children}
