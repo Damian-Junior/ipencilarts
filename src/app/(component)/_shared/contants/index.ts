@@ -13,7 +13,7 @@ export const imageData = [
     src: "https://itarkett.sirv.com/Images/ipencil_arts/blueseries_1.jpeg",
     size: "3ft x 4ft",
     year: 2023,
-    sold:false,
+    sold:true,
 
   },
   {
@@ -22,7 +22,7 @@ export const imageData = [
     src: "https://itarkett.sirv.com/Images/ipencil_arts/blueseries_2.jpeg",
     size: "3ft x 4ft",
     year: 2023,
-    sold:false,
+    sold:true,
 
   },
   {
@@ -31,7 +31,7 @@ export const imageData = [
     src: "https://itarkett.sirv.com/Images/ipencil_arts/blueseries_3.jpeg",
     size: "3ft x 4ft",
     year: 2023,
-    sold:false,
+    sold:true,
 
   },
   {
@@ -67,7 +67,7 @@ export const imageData = [
     src: "https://itarkett.sirv.com/Images/ipencil_arts/All%20Black.jpeg",
     size: "3ft x 4ft",
     year: 2023,
-    sold:false,
+    sold:true,
 
   },
 ];
