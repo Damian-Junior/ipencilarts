@@ -22,13 +22,21 @@ const Cart = (props: CartProps) => {
     setArtPrints,
   } = props;
   const [email, setEmail] = useState("");
+  const [country, setCountry] = useState("");
   const isMobile = useMediaQuery(mediaSize.mobile);
   const totalAmount =
     artPrints.reduce((acc, item) => acc + item.price * item.quantity, 0) +
     cartItems.reduce((acc, item) => acc + item.price, 0);
-  const { handlePayClick } = usePayment({ email, amount: totalAmount });
+  const { handlePayClick } = usePayment({
+    email,
+    amount: totalAmount,
+    country,
+  });
   const handleEmailChange = (event: any) => {
     setEmail(event.target.value);
+  };
+  const handleCountryChange = (event: any) => {
+    setCountry(event.target.value);
   };
   const increaseQuantity = (index: number) => {
     const updatedArtPrints = [...artPrints];
@@ -166,6 +174,15 @@ const Cart = (props: CartProps) => {
               placeholder="Enter your email"
               value={email}
               onChange={handleEmailChange}
+              type="email"
+            />
+          </div>
+          <div style={{ margin: "20px 0px", padding: "10px" }}>
+            <Input
+              prefix={<MailOutlined style={{ color: "rgba(0, 0, 0,)" }} />}
+              placeholder="Enter your Country"
+              value={country}
+              onChange={handleCountryChange}
               type="email"
             />
           </div>

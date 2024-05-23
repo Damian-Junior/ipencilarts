@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import { MenuOutlined } from "@ant-design/icons";
 const MobileHeader = () => {
   const [visible, setVisible] = useState(false);
-  const [showCart, setShowCart] = useState(false);
 
   const {
     cartItems,
@@ -19,18 +18,21 @@ const MobileHeader = () => {
     artPrints,
     removeFromCartPrint,
     setArtPrints,
+    showDrawer,
+    onClose: handleCloseCart,
+    visible: showCart,
   } = useContext(CartContext);
   const { push } = useRouter();
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
-  const handleShowCart = () => {
-    setShowCart(true);
-  };
-  const handleCloseCart = () => {
-    setShowCart(false);
-  };
+  // const showDrawer = () => {
+  //   setVisible(true);
+  // };
+  // const handleShowCart = () => {
+  //   setShowCart(true);
+  // };
+  // const handleCloseCart = () => {
+  //   setShowCart(false);
+  // };
   const onClose = () => {
     setVisible(false);
   };
@@ -48,7 +50,7 @@ const MobileHeader = () => {
       >
         IPENCIL
       </div>
-      <div onClick={handleShowCart} style={{ display: "flex" }}>
+      <div onClick={showDrawer} style={{ display: "flex" }}>
         <ShoppingCartOutlined className={styles.cart} size={150} />
         <span style={{ color: "#fff", marginLeft: 5 }}>
           {cartItems.length > 0 || artPrints.length > 0

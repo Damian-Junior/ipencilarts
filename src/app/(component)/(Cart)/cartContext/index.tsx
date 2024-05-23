@@ -7,14 +7,16 @@ interface CartContextPropType {
   addToCart: (product: any) => void;
   addToCartPrint: (product: any) => void;
   cartItems: Array<Record<string, any>>;
-  artPrints:Array<Record<string, any>>;
+  artPrints: Array<Record<string, any>>;
   removeFromCart: (product: any) => void;
   removeFromCartPrint: (productId: string) => void;
   clearCart: () => void;
-  setArtPrints:any;
-  shopArts:Array<Record<string, any>>;
-  setShopArts:any;
-
+  setArtPrints: any;
+  shopArts: Array<Record<string, any>>;
+  setShopArts: any;
+  showDrawer: any;
+  onClose: any;
+  visible:boolean;
 }
 
 export const CartContext = createContext<CartContextPropType>({
@@ -24,16 +26,22 @@ export const CartContext = createContext<CartContextPropType>({
   addToCartPrint: () => {},
   removeFromCartPrint: () => {},
   cartItems: [],
-  artPrints:[],
-  setArtPrints:()=>{},
-  shopArts:[],
-  setShopArts:()=>{}
+  artPrints: [],
+  setArtPrints: () => {},
+  shopArts: [],
+  setShopArts: () => {},
+  onClose: () => {},
+  showDrawer: () => {},
+  visible:false,
 });
 
 export const CartProvider = ({ children }: any) => {
-  const [cartItems, setCartItems] = useState<any>(store.get("originalArts") || []);
+  const [cartItems, setCartItems] = useState<any>(
+    store.get("originalArts") || []
+  );
   const [artPrints, setArtPrints] = useState<any>(store.get("printsArt") || []);
   const [shopArts, setShopArts] = useState<any>(imageData);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     store.set("originalArts", cartItems);
@@ -42,7 +50,13 @@ export const CartProvider = ({ children }: any) => {
   useEffect(() => {
     store.set("printsArt", artPrints);
   }, [artPrints]);
+  const showDrawer = () => {
+    setVisible(true);
+  };
 
+  const onClose = () => {
+    setVisible(false);
+  };
   const addToCart = (product: Record<string, any>) => {
     const exists = cartItems.some(
       (item: Record<string, any>) => item.src === product.src
@@ -91,7 +105,10 @@ export const CartProvider = ({ children }: any) => {
         artPrints,
         setArtPrints,
         shopArts,
-        setShopArts
+        setShopArts,
+        visible,
+        showDrawer,
+        onClose,
       }}
     >
       {children}

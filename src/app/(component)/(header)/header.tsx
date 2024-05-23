@@ -13,21 +13,16 @@ const { Header } = Layout;
 
 const ResponsiveHeader = () => {
   const isMobile = useMediaQuery(mediaSize.mobile);
-  const [visible, setVisible] = useState(false);
   const { push } = useRouter();
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onClose = () => {
-    setVisible(false);
-  };
   const {
     cartItems,
     removeFromCart,
     artPrints,
     removeFromCartPrint,
     setArtPrints,
+    onClose,
+    showDrawer,
+    visible,
   } = useContext(CartContext);
   if (isMobile) return <MobileHeader />;
   return (

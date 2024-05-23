@@ -8,11 +8,12 @@ const publicKey = "pk_test_119e8cd6b656668fe975c7f7ccae9709ebf4efa3";
 type UsePaymentProps = {
   email: string;
   amount: number;
+  country: string;
 };
 const usePayment = (props: UsePaymentProps) => {
-  const { email, amount } = props;
+  const { email, amount, country } = props;
   const [reference, setReference] = useState("");
-  const { clearCart, cartItems, artPrints, shopArts, setShopArts } =
+  const { clearCart, cartItems, artPrints, shopArts, setShopArts, onClose } =
     useContext(CartContext);
   // function to update shopStore after purchase
   const updateSoldProperty = () => {
@@ -27,8 +28,7 @@ const usePayment = (props: UsePaymentProps) => {
       return item;
     });
     setShopArts([...shopArts, newShopArt]);
-    console.log(newShopArt,'updated')
-
+    console.log(newShopArt, "updated");
   };
   // function to dispatch email of purchased art
   const sendEmail = () => {
@@ -36,7 +36,7 @@ const usePayment = (props: UsePaymentProps) => {
     const emailParams = {
       to_name: `${email}`,
       from_name: "emmydollar98@gmail.com",
-      message: prepareMessage(cartItems, artPrints),
+      message: prepareMessage(cartItems, artPrints, email, country),
     };
 
     emailjs
@@ -77,8 +77,9 @@ const usePayment = (props: UsePaymentProps) => {
         onSuccess: () => {
           sendEmail();
           message.success("Payment was successfull");
-          updateSoldProperty();
+          // updateSoldProperty();
           clearCart();
+          onClose();
         },
       });
     } catch (error) {
@@ -102,7 +103,9 @@ function generateUniqueReference() {
 // This function combines items from two cart arrays into a single message
 const prepareMessage = (
   items1: Array<Record<string, any>>,
-  items2: Array<Record<string, any>>
+  items2: Array<Record<string, any>>,
+  email: string,
+  country: string
 ) => {
   // Format the items for each section
   const formatItems = (items: any, title: string) => {
@@ -123,5 +126,5 @@ const prepareMessage = (
   const printsSection = formatItems(items2, "Prints");
 
   // Combine both sections
-  return `${originalsSection}\n\n${printsSection}`;
+  return `Email of Buyer: ${email}\n Country: ${country}\n ${originalsSection}\n\n${printsSection}`;
 };
