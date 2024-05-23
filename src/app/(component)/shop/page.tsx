@@ -59,8 +59,8 @@ const Shop = () => {
                   }}
                   cover={
                     <Image
-                      width={320}
-                      height={300}
+                      width={940}
+                      height={450}
                       alt={item.name}
                       src={item.src}
                     />
