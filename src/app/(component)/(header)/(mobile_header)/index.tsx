@@ -24,21 +24,16 @@ const MobileHeader = () => {
   } = useContext(CartContext);
   const { push } = useRouter();
 
-  // const showDrawer = () => {
-  //   setVisible(true);
-  // };
-  // const handleShowCart = () => {
-  //   setShowCart(true);
-  // };
-  // const handleCloseCart = () => {
-  //   setShowCart(false);
-  // };
+  const showMenu = () => {
+    setVisible(true);
+  };
+
   const onClose = () => {
     setVisible(false);
   };
   return (
     <div className={styles.mobile_header_container}>
-      <Button className="menu-btn" type="primary" onClick={showDrawer}>
+      <Button className="menu-btn" type="primary" onClick={showMenu}>
         <MenuOutlined style={{ background: "#fff" }} />
       </Button>
       <div
