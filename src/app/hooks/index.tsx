@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { CartContext } from "../(component)/(Cart)/cartContext";
 import emailjs from "@emailjs/browser";
-const publicKey = "pk_test_119e8cd6b656668fe975c7f7ccae9709ebf4efa3";
+const publicKey = "pk_live_0e68af272a93c44a5ae4edebd8eb67a1a477555f";
 type UsePaymentProps = {
   email: string;
   amount: number;
@@ -41,10 +41,10 @@ const usePayment = (props: UsePaymentProps) => {
 
     emailjs
       .send(
-        "service_gvu0kda",
-        "template_z32i447",
+        "service_84hblrn",
+        "template_yxgjdf4",
         emailParams,
-        "cWfTycNOYgmFGsksp"
+        "M5LJaFc-j80eVH1qA"
       )
       .then(
         (result) => {
