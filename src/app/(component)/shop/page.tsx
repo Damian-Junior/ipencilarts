@@ -90,7 +90,7 @@ const Shop = () => {
                 {item.sold && (
                   <Tag
                     color="red"
-                    style={{ position: "absolute", right: '13px', top: '1px', borderRadius:'6px',  }}
+                    style={{ position: "absolute", right: '5%', top: '0', borderRadius:'6px',  }}
                   >
                     Sold
                   </Tag>
