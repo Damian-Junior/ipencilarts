@@ -40,9 +40,16 @@ export const CartProvider = ({ children }: any) => {
     store.get("originalArts") || []
   );
   const [artPrints, setArtPrints] = useState<any>(store.get("printsArt") || []);
-  const [shopArts, setShopArts] = useState<any>(imageData);
   const [visible, setVisible] = useState(false);
-
+  const [shopArts, setShopArts] = useState(() => {
+    // Retrieve cards from localStorage if they exist, otherwise use initialCards
+    const savedCards = store.get('cards');
+    return savedCards ? JSON.parse(savedCards) : imageData;
+  });
+  useEffect(() => {
+    // Save cards to localStorage whenever they change
+    store.set('cards', JSON.stringify(shopArts));
+  }, [shopArts]);
   useEffect(() => {
     store.set("originalArts", cartItems);
   }, [cartItems]);

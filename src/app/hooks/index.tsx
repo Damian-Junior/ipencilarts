@@ -77,7 +77,7 @@ const usePayment = (props: UsePaymentProps) => {
         onSuccess: () => {
           sendEmail();
           message.success("Payment was successfull");
-          // updateSoldProperty();
+          updateSoldProperty();
           clearCart();
           onClose();
         },
