@@ -7,7 +7,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
-const publicKey = 'pk_live_0e68af272a93c44a5ae4edebd8eb67a1a477555f';
+const publicKey = `${process.env.NEXT_PUBLIC_PUBLIC_KEY}`;
 type UsePaymentProps = {
   email: string;
   amount: number;
@@ -76,7 +76,7 @@ const usePayment = (props: UsePaymentProps) => {
         "service_84hblrn",
         "template_yxgjdf4",
         emailParams,
-        `${process.env.NEXT_PUBLIC_EMAILJS_USER_ID}`
+        `${process.env.EMAILJS_USER_ID}`
       )
       .then(
         (result) => {
