@@ -1,7 +1,7 @@
 "use client";
 import { Card, Row, Col, Button, } from "antd";
 import { useContext, useState, useEffect } from "react";
-import styles from "../shop/shop.module.css";
+import styles from "../originals/shop.module.css";
 import { prints} from "../_shared/contants";
 import Image from "next/image";
 import { CartContext } from "../(Cart)/cartContext";
