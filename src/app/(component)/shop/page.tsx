@@ -6,11 +6,25 @@ import Image from "next/image";
 import { CartContext } from "../(Cart)/cartContext";
 import { InView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 const Shop = () => {
-  const { addToCart, shopArts } = useContext(CartContext);
+  const { addToCart, shopArts, setShopArts } = useContext(CartContext);
   const [isVisible, setIsVisible] = useState(false);
 
+
+  useEffect(() => {
+    const fetchShopArts = async () => {
+      const querySnapshot = await getDocs(collection(db, "Shoparts"));
+      const items:Array<Record<string, any>> = [];
+      querySnapshot.forEach((doc) => {
+        items.push({ id: doc.id, ...doc.data() });
+      });
+      setShopArts(items);
+    };
+
+    fetchShopArts();
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;

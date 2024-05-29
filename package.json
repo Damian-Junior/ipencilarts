@@ -12,6 +12,7 @@
     "@ant-design/icons": "^5.3.6",
     "@emailjs/browser": "^4.3.3",
     "antd": "^5.16.1",
+    "firebase": "^10.12.2",
     "fortawesome": "^0.0.1-security",
     "framer-motion": "^11.1.7",
     "next": "13.5.6",
