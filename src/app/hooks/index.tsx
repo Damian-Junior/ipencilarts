@@ -1,12 +1,13 @@
 "use client";
 import { message } from "antd";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { CartContext } from "../(component)/(Cart)/cartContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
+import axios from "axios";
 import emailjs from "@emailjs/browser";
-const publicKey = "pk_live_0e68af272a93c44a5ae4edebd8eb67a1a477555f";
+const publicKey = `${process.env.NEXT_PUBLIC_PUBLIC_KEY}`;
 type UsePaymentProps = {
   email: string;
   amount: number;
@@ -17,11 +18,29 @@ const usePayment = (props: UsePaymentProps) => {
   const [reference, setReference] = useState("");
   const { clearCart, cartItems, artPrints, shopArts, setShopArts, onClose } =
     useContext(CartContext);
+  const [rate, setRate] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchExchangeRate = async () => {
+      try {
+        const response = await axios.get("/api/exchange-rate");
+        setRate(response.data.rate);
+      } catch (error) {
+        setError("Failed to fetch exchange rate");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExchangeRate();
+  }, []);
   // function to update shopStore after purchase
   const updateSoldProperty = async () => {
     // Create a set of IDs from the cart for quick lookup
     const cartIds = new Set(cartItems.map((item) => item.src));
-  
+
     // Iterate over the items array and update the sold property if the item is in the cart
     const newShopArt = shopArts.map((item) => {
       if (cartIds.has(item.src)) {
@@ -29,7 +48,7 @@ const usePayment = (props: UsePaymentProps) => {
       }
       return item;
     });
-  
+
     // Update Firestore with the new sold status
     await Promise.all(
       newShopArt.map(async (item) => {
@@ -39,7 +58,7 @@ const usePayment = (props: UsePaymentProps) => {
         }
       })
     );
-  
+
     setShopArts(newShopArt); // Correctly update the state with the newShopArt
     console.log(newShopArt, "updated");
   };
@@ -57,7 +76,7 @@ const usePayment = (props: UsePaymentProps) => {
         "service_84hblrn",
         "template_yxgjdf4",
         emailParams,
-        "M5LJaFc-j80eVH1qA"
+        `${process.env.NEXT_PUBLIC_EMAILJS_USER_ID}`
       )
       .then(
         (result) => {
@@ -71,7 +90,7 @@ const usePayment = (props: UsePaymentProps) => {
   const config = {
     reference: reference,
     email,
-    amount: amount * 100, // Paystack uses kobo (multiply amount by 100)
+    amount: Math.round(amount * 100 * rate), 
     publicKey,
     currency: "NGN",
   };
@@ -83,18 +102,18 @@ const usePayment = (props: UsePaymentProps) => {
       return;
     }
 
-    setReference(generateUniqueReference()); // Replace with a function to generate a unique reference
-
+    setReference(generateUniqueReference()); 
     try {
-      await initializePayment({
-        onSuccess: () => {
-          sendEmail();
-          message.success("Payment was successfull");
-          updateSoldProperty();
-          clearCart();
-          onClose();
-        },
-      });
+      !loading &&
+        (await initializePayment({
+          onSuccess: () => {
+            sendEmail();
+            message.success("Payment was successfull");
+            updateSoldProperty();
+            clearCart();
+            onClose();
+          },
+        }));
     } catch (error) {
       console.error("Payment error:", error);
       message.success(`Payment failed: ${error}`);
