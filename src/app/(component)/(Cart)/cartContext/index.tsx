@@ -2,7 +2,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { message } from "antd";
 import store from "store2";
-import { imageData } from "../../_shared/contants";
 interface CartContextPropType {
   addToCart: (product: any) => void;
   addToCartPrint: (product: any) => void;
@@ -41,15 +40,8 @@ export const CartProvider = ({ children }: any) => {
   );
   const [artPrints, setArtPrints] = useState<any>(store.get("printsArt") || []);
   const [visible, setVisible] = useState(false);
-  const [shopArts, setShopArts] = useState(() => {
-    // Retrieve cards from localStorage if they exist, otherwise use initialCards
-    const savedCards = store.get('cards');
-    return savedCards ? JSON.parse(savedCards) : imageData;
-  });
-  useEffect(() => {
-    // Save cards to localStorage whenever they change
-    store.set('cards', JSON.stringify(shopArts));
-  }, [shopArts]);
+  const [shopArts, setShopArts] = useState([]);
+
   useEffect(() => {
     store.set("originalArts", cartItems);
   }, [cartItems]);

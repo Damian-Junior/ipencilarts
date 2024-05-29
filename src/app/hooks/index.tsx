@@ -3,6 +3,8 @@ import { message } from "antd";
 import { useState, useContext } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { CartContext } from "../(component)/(Cart)/cartContext";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
 import emailjs from "@emailjs/browser";
 const publicKey = "pk_live_0e68af272a93c44a5ae4edebd8eb67a1a477555f";
 type UsePaymentProps = {
@@ -16,10 +18,10 @@ const usePayment = (props: UsePaymentProps) => {
   const { clearCart, cartItems, artPrints, shopArts, setShopArts, onClose } =
     useContext(CartContext);
   // function to update shopStore after purchase
-  const updateSoldProperty = () => {
+  const updateSoldProperty = async () => {
     // Create a set of IDs from the cart for quick lookup
     const cartIds = new Set(cartItems.map((item) => item.src));
-
+  
     // Iterate over the items array and update the sold property if the item is in the cart
     const newShopArt = shopArts.map((item) => {
       if (cartIds.has(item.src)) {
@@ -27,7 +29,18 @@ const usePayment = (props: UsePaymentProps) => {
       }
       return item;
     });
-    setShopArts([...shopArts, newShopArt]);
+  
+    // Update Firestore with the new sold status
+    await Promise.all(
+      newShopArt.map(async (item) => {
+        if (item.sold) {
+          const itemDoc = doc(db, "shopArts", item.id);
+          await updateDoc(itemDoc, { sold: true });
+        }
+      })
+    );
+  
+    setShopArts(newShopArt); // Correctly update the state with the newShopArt
     console.log(newShopArt, "updated");
   };
   // function to dispatch email of purchased art
