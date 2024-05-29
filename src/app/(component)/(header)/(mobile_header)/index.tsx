@@ -98,7 +98,7 @@ const MobileHeader = () => {
           <Menu.Item
             key="3"
             onClick={() => {
-              push("/shop");
+              push("/originals");
               onClose();
             }}
             style={{
@@ -106,7 +106,7 @@ const MobileHeader = () => {
               fontWeight: "bolder",
             }}
           >
-            Shop
+            Buy My Originals
           </Menu.Item>
           <Menu.Item
             key="4"
