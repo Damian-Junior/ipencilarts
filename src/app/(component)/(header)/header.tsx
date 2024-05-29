@@ -62,13 +62,13 @@ const ResponsiveHeader = () => {
         </Menu.Item>
         <Menu.Item
           key="3"
-          onClick={() => push("/shop")}
+          onClick={() => push("/originals")}
           style={{
             color: "#fff",
             fontWeight: "bolder",
           }}
         >
-          Shop
+          Buy My Originals
         </Menu.Item>
         <Menu.Item
           key="5"
