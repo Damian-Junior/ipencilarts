@@ -7,7 +7,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
-const publicKey = `${process.env.NEXT_PUBLIC_PUBLIC_KEY}`;
+const publicKey = 'b9affe499c0ffeda962608d7';
 type UsePaymentProps = {
   email: string;
   amount: number;
