@@ -45,7 +45,7 @@ export const prints = [
   },
   {
     name: "Blue Series 2",
-    price: 100,
+    price: 140,
     src: "https://itarkett.sirv.com/Images/ipencil_arts/blueseries_2.jpeg",
     size: "16 x 20 inches",
     year: 2023,
