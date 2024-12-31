@@ -25,6 +25,7 @@ const Shop = () => {
 
     fetchShopArts();
   }, []);
+  
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;

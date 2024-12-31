@@ -17,7 +17,7 @@ const ResponsiveFooter = () => {
         textAlign: "center",
         width: "100%",
         backgroundColor: "transparent",
-      }}
+              }}
     >
       <div className={styles.text}>
         {/* <p className={styles.text_p}>Shopping and Returns</p>

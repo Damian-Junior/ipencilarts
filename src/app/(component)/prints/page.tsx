@@ -94,8 +94,9 @@ const Prints = () => {
           animate="visible"
           exit="hidden"
           className="scroll-to-top"
+          style={{ position: "fixed", bottom: "30%", right: "2%" }}
         >
-          <span>&#187;</span>
+           <span style={{ color: "#fff" }}>&#x1F879;</span>
         </motion.button>
       )}
     </AnimatePresence>
