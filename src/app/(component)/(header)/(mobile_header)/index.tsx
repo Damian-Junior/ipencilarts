@@ -33,7 +33,7 @@ const MobileHeader = () => {
   };
   return (
     <div className={styles.mobile_header_container}>
-      <Button className="menu-btn" type="primary" onClick={showMenu}>
+      <Button className="menu-btn" type="primary" onClick={showMenu} style={{background:'none'}}>
         <MenuOutlined style={{ background: "#fff" }} />
       </Button>
       <div

@@ -25,7 +25,7 @@ const AppDrawer = (props: AppDrawerProps) => {
   } = props;
   return (
     <Drawer
-      title={<span style={{ color: "#fff" , letterSpacing:10,}}>Your Cart</span>}
+      title={<span style={{ color: "#fff" , letterSpacing:10, opacity:0.3}}>Your Cart</span>}
       onClose={onClose}
       open={open}
       placement={placement}
