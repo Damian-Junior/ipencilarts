@@ -1,13 +1,12 @@
 "use client";
-import { Card, Row, Col, Button, } from "antd";
+import { Card, Row, Col, Button, Spin } from "antd";
 import { useContext, useState, useEffect } from "react";
 import styles from "../originals/shop.module.css";
-import { prints} from "../_shared/contants";
+import { prints } from "../_shared/contants";
 import Image from "next/image";
 import { CartContext } from "../(Cart)/cartContext";
 import { InView } from "react-intersection-observer";
-import { motion, AnimatePresence, } from 'framer-motion';
-
+import { motion, AnimatePresence } from "framer-motion";
 
 const Prints = () => {
   const { addToCartPrint } = useContext(CartContext);
@@ -19,28 +18,29 @@ const Prints = () => {
       setIsVisible(scrollY > 500); // Adjust threshold as needed
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const scrollToTopVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+
   return (
     <div className={styles.imagesContainer}>
       <Row gutter={[16, 16]}>
         {prints.map((item, index: number) => (
           <InView triggerOnce threshold={1} key={index}>
-            {({ inView, ref, }) => (
+            {({ inView, ref }) => (
               <Col key={index} xs={24} sm={24} md={12} lg={8} xl={6} ref={ref}>
                 <Card
-                key={index}
+                  key={index}
                   className={
                     inView ? styles.visible_card : styles.invisible_card
                   }
@@ -59,9 +59,7 @@ const Prints = () => {
                   }
                 >
                   <Card.Meta
-                    title={
-                      <span style={{ color: "#fff" }}>{item.name}</span>
-                    }
+                    title={<span style={{ color: "#fff" }}>{item.name}</span>}
                     description={
                       <span
                         style={{ color: "#fff" }}
@@ -86,20 +84,20 @@ const Prints = () => {
         ))}
       </Row>
       <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          onClick={scrollToTop}
-          variants={scrollToTopVariants}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          className="scroll-to-top"
-          style={{ position: "fixed", bottom: "30%", right: "2%" }}
-        >
-           <span style={{ color: "#fff" }}>&#x1F879;</span>
-        </motion.button>
-      )}
-    </AnimatePresence>
+        {isVisible && (
+          <motion.button
+            onClick={scrollToTop}
+            variants={scrollToTopVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="scroll-to-top"
+            style={{ position: "fixed", bottom: "30%", right: "2%" }}
+          >
+            <span style={{ color: "#fff" }}>&#x1F879;</span>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
