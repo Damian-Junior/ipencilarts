@@ -1,6 +1,28 @@
-
-
 export const prints = [
+  {
+    name: "Man in purple",
+    price: 250,
+    src: "https://itarkett.sirv.com/Images/ipencil_arts/man_in_purple.jpeg",
+    size: "16 x 20 inches",
+    year: 2025,
+    quantity: 1,
+  },
+  {
+    name: "The Sojourner 2",
+    price: 250,
+    src: "https://itarkett.sirv.com/Images/ipencil_arts/the_sojourner_2.jpeg",
+    size: "16 x 20 inches",
+    year: 2025,
+    quantity: 1,
+  },
+  {
+    name: "Flower Boy",
+    price: 250,
+    src: "https://itarkett.sirv.com/Images/ipencil_arts/flower_boy.jpeg",
+    size: "16 x 20 inches",
+    year: 2025,
+    quantity: 1,
+  },
   {
     name: "Blue Series 3",
     price: 140,
