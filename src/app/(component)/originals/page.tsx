@@ -68,7 +68,7 @@ const Shop = () => {
                   }
                   hoverable
                   style={{
-                    width: "95%",
+                    width: "100%",
                     marginRight: 5,
                   }}
                   cover={

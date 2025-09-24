@@ -29,9 +29,10 @@
 @media (max-width: 991px) {
   .imagesContainer {
     overflow: hidden;
-    width: 95%;
-    padding: 10px;
+    width: 100%;
+    margin: auto;
     margin-top: 100px;
+    padding: 20px;
   }
 }
 
