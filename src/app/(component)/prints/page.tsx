@@ -16,7 +16,7 @@ const Prints = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsVisible(scrollY > 500); // Adjust threshold as needed
+      setIsVisible(scrollY > 500);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -46,7 +46,7 @@ const Prints = () => {
                   }
                   hoverable
                   style={{
-                    width: "95%",
+                    width: "100%",
                     marginRight: 5,
                   }}
                   cover={
